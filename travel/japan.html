@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Japan — Diana D. Liu</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <meta name="referrer" content="no-referrer">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: rgba(255,255,255,0.06);
+      --text: #e5e5e5;
+      --text-muted: rgba(255,255,255,0.45);
+      --accent: #e8734a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Back link */
+    .back-link {
+      position: fixed;
+      top: 28px;
+      left: 28px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      z-index: 100;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 120px 40px 60px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+    .hero .trip-date {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Content */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+
+    /* Notes section */
+    .notes {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+    .notes p { margin-bottom: 12px; }
+    .notes p:last-child { margin-bottom: 0; }
+    .notes a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    .notes a:hover { opacity: 0.8; }
+
+    /* City section */
+    .city-section {
+      margin-bottom: 56px;
+    }
+    .city-header {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .city-notes {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+    .city-notes a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .city-notes a:hover { opacity: 0.8; }
+
+    /* Category */
+    .category {
+      margin-bottom: 28px;
+    }
+    .category-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* Place cards */
+    .place-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .place {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .place:last-child { border-bottom: none; }
+    .place-name {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 450;
+      transition: color 0.3s ease;
+      flex-shrink: 0;
+    }
+    .place-name:hover { color: var(--accent); }
+    .place-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* Also worth visiting */
+    .also-section {
+      margin-top: 20px;
+    }
+    .also-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 10px;
+    }
+    .also-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .also-tag {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    .also-tag:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Divider */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 48px 0;
+    }
+
+    /* Footer */
+    .travel-footer {
+      text-align: center;
+      padding: 24px 40px 48px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .travel-footer a {
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .travel-footer a:hover { color: var(--accent); }
+
+    /* Top nav */
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      padding: 28px 40px;
+      gap: 32px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 100;
+    }
+    .top-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .top-nav a:hover { color: #fff; }
+
+    /* Floating nav */
+    .floating-nav {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      gap: 4px;
+      background: rgba(30,30,30,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 100px;
+      padding: 5px 6px;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .floating-nav.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .floating-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 18px;
+      transition: all 0.2s;
+    }
+    .floating-nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+    }
+    .floating-nav a.active {
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .back-link { top: 16px; left: 16px; font-size: 0.82rem; }
+      .top-nav { padding: 20px 20px; gap: 24px; }
+      .hero { padding: 80px 20px 40px; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero .subtitle { font-size: 0.95rem; }
+      .content { padding: 0 20px 60px; }
+      .notes { padding: 20px 24px; font-size: 0.88rem; }
+      .city-header { font-size: 1.5rem; }
+      .place-name { font-size: 0.9rem; }
+      .place-note { font-size: 0.78rem; }
+      .floating-nav { bottom: 16px; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="../#life" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+
+  <nav class="top-nav">
+    <a href="#tokyo">Tokyo</a>
+    <a href="#mt-fuji">Mt. Fuji</a>
+    <a href="#kyoto">Kyoto</a>
+  </nav>
+
+  <nav class="floating-nav" id="floatingNav">
+    <a href="#tokyo">Tokyo</a>
+    <a href="#mt-fuji">Mt. Fuji</a>
+    <a href="#kyoto">Kyoto</a>
+  </nav>
+
+  <div class="hero">
+    <h1>Japan</h1>
+    <div class="subtitle">Tokyo, Mt. Fuji, Kyoto</div>
+    <div class="trip-date">March 2023 · ~10 days</div>
+  </div>
+
+  <div class="content">
+
+    <!-- Overall Notes -->
+    <div class="notes">
+      <p>Went to Tokyo, Kyoto, and Lake Yamanaka near Mt. Fuji in ~10 days. Was a great time overall, although there were so many tourists during cherry blossom season. I would honestly go during a less busy season next time — it was almost impossible to get nice pictures at the regular locations.</p>
+      <p>I'd recommend downloading <a href="https://www.google.com/search?q=didi+taxi+app" target="_blank" rel="noopener">DiDi</a> to order taxis — it was awesome, taxi drivers always came within 2–3 min in Tokyo/Kyoto and you just pay with cash at the end. I looked into Uber but didn't see any cars available in Kyoto.</p>
+      <p>I'd also recommend getting a <a href="https://support.apple.com/en-us/HT207155" target="_blank" rel="noopener">metro card</a> (e.g., Suica, Pasmo) and adding it to Apple Wallet — super convenient just flashing your phone instead of digging for a physical card.</p>
+    </div>
+
+    <!-- Tokyo -->
+    <div class="city-section" id="tokyo">
+      <h2 class="city-header">Tokyo</h2>
+      <div class="city-notes">
+        Stayed in Shinjuku which I'd personally recommend — it's so lively at night and very easy to take a day trip outside of Tokyo or to other neighborhoods and come back for a convenient dinner before heading home. Tokyo is great for the food, museums, shopping, checking out different neighborhood vibes, and city nightlife.
+      </div>
+
+      <div class="category">
+        <div class="category-label">Restaurants & Cafes</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/TQRyfeJyEKRsVTMQ7" target="_blank" rel="noopener">Coffee PUNKTO</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/QMagqkJ2rdf7FYTC9" target="_blank" rel="noopener">Genpin Kisshouji</a>
+            <span class="place-note">Fugu, unagi, crab</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/spaaFR1TN8aLCsCC7" target="_blank" rel="noopener">Jojoen</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/wn81Ys5zJ5fopyYv6" target="_blank" rel="noopener">Momo Paradise Shinjuku</a>
+            <span class="place-note">Chain — a bit overpriced in Japan but still delicious</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/JBfkEubJhXSUMCb4A" target="_blank" rel="noopener">Uogashi Nihon-Ichi</a>
+            <span class="place-note">Standing sushi bar</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/8Nj7yy6yHgwT9fSs5" target="_blank" rel="noopener">Uniholic</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Sightseeing</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/piEeNxUnqAXXBGFUA" target="_blank" rel="noopener">Animate</a>
+            <span class="place-note">Akihabara — anime stuff + snacks for gifts</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/HszotLW5XN9UkkG27" target="_blank" rel="noopener">Imperial Palace</a>
+            <span class="place-note">Didn't go, but parents said it was nice</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/xBCBVtbEhRncASHh8" target="_blank" rel="noopener">Tokyo Metropolitan Government Building</a>
+            <span class="place-note">Free observation room</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/3VjW2ow3d4sp3uGv9" target="_blank" rel="noopener">Tokyo National Museum</a>
+            <span class="place-note">Awesome collection</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/FuVRQgbaBe3YBHAi9" target="_blank" rel="noopener">Ueno Park</a>
+            <span class="place-note">So many beautiful cherry blossoms but also so crowded!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category also-section">
+        <div class="also-label">On my list for next time</div>
+        <div class="also-list">
+          <a class="also-tag" href="https://goo.gl/maps/8aA7h4n4xkNECQBo7" target="_blank" rel="noopener">Ghibli Museum</a>
+          <a class="also-tag" href="https://goo.gl/maps/PGizMFqcFhgWePZD8" target="_blank" rel="noopener">Ramen Museum</a>
+          <a class="also-tag" href="https://goo.gl/maps/TzoQdL7whfawM66d7" target="_blank" rel="noopener">Sanrio Puroland</a>
+          <a class="also-tag" href="https://goo.gl/maps/nQZ1SknkJ6XqugBV8" target="_blank" rel="noopener">Shinjuku Gyoen</a>
+          <a class="also-tag" href="https://goo.gl/maps/qJ36XLRjoJW6TKTt7" target="_blank" rel="noopener">Sumida Hokusai Museum</a>
+          <a class="also-tag" href="https://goo.gl/maps/Xbg1QoJHK3sDiQs66" target="_blank" rel="noopener">Sumo Museum</a>
+          <a class="also-tag" href="https://goo.gl/maps/8VNicfDBqdYaTEYJ7" target="_blank" rel="noopener">Yokohama Chinatown</a>
+        </div>
+      </div>
+
+      <div class="category also-section">
+        <div class="also-label">Also worth visiting</div>
+        <div class="also-list">
+          <a class="also-tag" href="https://goo.gl/maps/jXudymNrTSgcNbSZ9" target="_blank" rel="noopener">Meiji Jingu</a>
+          <a class="also-tag" href="https://goo.gl/maps/uUCgPdKaRRG6XNcF8" target="_blank" rel="noopener">Senso-ji</a>
+          <a class="also-tag" href="https://goo.gl/maps/481U8EjqpuhDBDzaA" target="_blank" rel="noopener">Tsukiji Outer Market</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Mt. Fuji -->
+    <div class="city-section" id="mt-fuji">
+      <h2 class="city-header">Mt. Fuji</h2>
+      <div class="city-notes">
+        Staying in a traditional ryokan is awesome — we really liked <a href="http://www.rakuyu.co.jp/" target="_blank" rel="noopener">Rakuyu</a>. The bus is convenient, although we just took taxis. We called local taxi services and I used Google Translate to talk with them in Japanese. Next time I'd try to climb Mt. Fuji (only possible in summer).
+      </div>
+
+      <div class="category">
+        <div class="category-label">Restaurants & Cafes</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/dLWjZCDM8VHb1Ln76" target="_blank" rel="noopener">Shoya</a>
+            <span class="place-note">Hoto noodles are great, especially the curry noodle soup</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/eH32GmnxpgzXvvc47" target="_blank" rel="noopener">Tsujiya</a>
+            <span class="place-note">We loveee this restaurant — became friends with the elderly lady who runs it</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Sightseeing</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/2ujTM6FBdBnQMN5Y8" target="_blank" rel="noopener">Kawaguchiko Tenjozan Park</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/6dbVbmp5GvKdmgNB7" target="_blank" rel="noopener">Nagaike Water Park</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/ydFfx9A8FrkHRxqZA" target="_blank" rel="noopener">Oshino Hakkai</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Kyoto -->
+    <div class="city-section" id="kyoto">
+      <h2 class="city-header">Kyoto</h2>
+      <div class="city-notes">
+        The vibe here is a bit quieter than Tokyo, with many more temples and <a href="https://www.youtube.com/watch?v=KuX3nu4jdo0" target="_blank" rel="noopener">muted colors</a> — really good for reflection and thinking about the history of the place. Stayed in a ryokan here too, but it wasn't as great as Mt. Fuji — a regular hotel is perfectly fine.
+      </div>
+
+      <div class="category">
+        <div class="category-label">Restaurants & Cafes</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/pX4qU8mStNaPeYXY7" target="_blank" rel="noopener">Kyoto Gion Ramen Muraji</a>
+            <span class="place-note">Lemon chicken ramen</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/TbbewPU5h9Pnpngb6" target="_blank" rel="noopener">Tatsumiya</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Sightseeing</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/nYwn1GucjNVfLf1LA" target="_blank" rel="noopener">Arashiyama Bamboo Forest</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/4c1qgDkg2AhX7bfi6" target="_blank" rel="noopener">Byodoin</a>
+            <span class="place-note">Similar temple on Oahu — this is the OG one and much bigger</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/XRSjLRkysa9ph9gC6" target="_blank" rel="noopener">Eikan-do (Zenrin-ji) Temple</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/8PwAdQM5wUXtp8aP6" target="_blank" rel="noopener">Kyoto International Manga Museum</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/TM7btYqMBn21Y2oz7" target="_blank" rel="noopener">Kyoto Railway Museum</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/zNvguB6Kx89gr6oD7" target="_blank" rel="noopener">Nishiki Market</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/AGgjrQ2WMnJSLLvs9" target="_blank" rel="noopener">Yasaka Shrine</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Shopping & Nightlife</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/5KjzMPG1TB96d8aH6" target="_blank" rel="noopener">kindal kyoto</a>
+            <span class="place-note">Secondhand luxury brands</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category also-section">
+        <div class="also-label">On my list for next time</div>
+        <div class="also-list">
+          <a class="also-tag" href="https://goo.gl/maps/G8KNgHsb6GqbSWMN7" target="_blank" rel="noopener">Kyoto National Museum</a>
+          <a class="also-tag" href="https://goo.gl/maps/yJyM53ZmBH98JHBu7" target="_blank" rel="noopener">Nijo Castle</a>
+          <a class="also-tag" href="https://goo.gl/maps/oadmpbeuEGtFcPXx5" target="_blank" rel="noopener">Nishi Hongan-ji</a>
+          <a class="also-tag" href="https://goo.gl/maps/mGX1GH2cwEJAnmhL6" target="_blank" rel="noopener">Toji</a>
+        </div>
+      </div>
+
+      <div class="category also-section">
+        <div class="also-label">Also worth visiting</div>
+        <div class="also-list">
+          <a class="also-tag" href="https://goo.gl/maps/62JSCHDbAtNbEdgA6" target="_blank" rel="noopener">Fushimi Inari Taisha</a>
+          <a class="also-tag" href="https://goo.gl/maps/WfU1VdKkizL23BDJ9" target="_blank" rel="noopener">Nara Park</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="travel-footer">
+    <a href="../">Diana D. Liu</a>
+  </div>
+
+  <script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('.top-nav a, .floating-nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Show/hide floating nav + highlight active section
+  const floatingNav = document.getElementById('floatingNav');
+  const sections = document.querySelectorAll('.city-section[id]');
+  window.addEventListener('scroll', () => {
+    floatingNav.classList.toggle('visible', window.scrollY > 400);
+
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 200) current = section.id;
+    });
+    document.querySelectorAll('.floating-nav a, .top-nav a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+  </script>
+</body>
+</html>
