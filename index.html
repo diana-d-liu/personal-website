@@ -415,6 +415,16 @@
       margin-bottom: 2px;
     }
 
+    .edu-list ul {
+      list-style: circle;
+      padding-left: 18px;
+      margin-top: 2px;
+    }
+
+    /* Desktop: show inline capstone, hide sub-bullet */
+    .capstone-inline { display: inline; }
+    .capstone-sub { display: none; }
+
     .bg-card > .value > a {
       color: var(--accent);
       text-decoration: none;
@@ -664,15 +674,17 @@
       .container { padding: 32px 20px 64px; }
       .section { margin-bottom: 48px; }
       .bg-grid { grid-template-columns: 1fr; }
-      .bg-grid[style] { grid-template-columns: 1fr 1fr !important; }
+      .bg-grid[style] { grid-template-columns: 1fr !important; }
       .gallery { grid-template-columns: 1fr 1fr; }
-      .book-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .book-grid { grid-template-columns: 1fr; gap: 10px; }
       .book-card { padding: 18px 20px; }
       .travel-tag { font-size: 0.85rem; padding: 7px 16px; }
       .travel-grid { flex-direction: column; }
       .travel-region { font-size: 0.75rem; }
       .footer { font-size: 0.78rem; }
       .edu-list { font-size: 0.8rem; padding-left: 14px; }
+      .capstone-inline { display: none; }
+      .capstone-sub { display: block; }
       .bg-card > .value > a { font-size: 1.02rem; }
       .floating-nav { bottom: 16px; right: 16px; }
       .exp-item { gap: 14px; margin-bottom: 28px; }
@@ -783,7 +795,9 @@
         <div class="value">
           <a href="https://www.berkeley.edu/">University of California, Berkeley</a>
           <ul class="edu-list">
-            <li>M.S. Information & Data Science (<a class="capstone-link" href="https://www.ischool.berkeley.edu/projects/2025/meetupai" target="_blank" rel="noopener">Capstone</a>)</li>
+            <li>M.S. Information & Data Science <span class="capstone-inline">(<a class="capstone-link" href="https://www.ischool.berkeley.edu/projects/2025/meetupai" target="_blank" rel="noopener">Capstone</a>)</span>
+              <ul class="capstone-sub"><li><a class="capstone-link" href="https://www.ischool.berkeley.edu/projects/2025/meetupai" target="_blank" rel="noopener">Capstone</a></li></ul>
+            </li>
             <li>B.A. Economics</li>
             <li>B.S. Business Administration</li>
           </ul>
@@ -797,10 +811,10 @@
       <div class="bg-grid" style="grid-template-columns: repeat(3, auto); gap: 10px;">
         <span class="travel-tag static" style="text-align:center;">AI</span>
         <span class="travel-tag static" style="text-align:center;">Data & Product Quality</span>
-        <span class="travel-tag static" style="text-align:center;">Trust & Safety</span>
         <span class="travel-tag static" style="text-align:center;">Data Compliance</span>
         <span class="travel-tag static" style="text-align:center;">Process & Policy Design</span>
         <span class="travel-tag static" style="text-align:center;">Program Management</span>
+        <span class="travel-tag static" style="text-align:center;">Trust & Safety</span>
       </div>
     </section>
 
@@ -816,9 +830,9 @@
       <div class="section-title">Personal Interests</div>
       <div class="divider"></div>
       <div class="bg-grid" style="grid-template-columns: repeat(4, auto); gap: 10px;">
-        <span class="travel-tag static" style="text-align:center;">Traveling & Hiking</span>
-        <span class="travel-tag static" style="text-align:center;">Reading</span>
         <span class="travel-tag static" style="text-align:center;">Film</span>
+        <span class="travel-tag static" style="text-align:center;">Reading</span>
+        <span class="travel-tag static" style="text-align:center;">Traveling & Hiking</span>
         <span class="travel-tag static" style="text-align:center;">Weightlifting</span>
       </div>
     </section>
