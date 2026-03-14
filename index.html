@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diana D. Liu</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #111111;
+      --text: #f5f5f7;
+      --muted: rgba(255,255,255,0.45);
+      --accent: #C4553A;
+      --accent-light: rgba(196, 85, 58, 0.12);
+      --sage: rgba(255,255,255,0.35);
+      --sage-light: rgba(255,255,255,0.04);
+      --sage-mid: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.08);
+      --card-bg: rgba(255,255,255,0.04);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ===== DARK HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .hero-nav {
+      display: flex;
+      justify-content: flex-end;
+      padding: 28px 40px;
+      gap: 32px;
+    }
+
+    .hero-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .hero-nav a:hover {
+      color: #fff;
+    }
+
+    .hero-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px 80px;
+      text-align: center;
+    }
+
+    .hero-headshot {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.08);
+      margin-bottom: 36px;
+    }
+
+    .hero-content h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: 4.2rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .hero-tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.35rem;
+      font-style: normal;
+      color: rgba(255,255,255,0.45);
+      max-width: 600px;
+      margin-top: 20px;
+      line-height: 1.6;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-location {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-top: 24px;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-location a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .hero-location a:hover {
+      color: var(--accent);
+    }
+
+    .hero-location .sep {
+      color: rgba(255,255,255,0.3);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.2);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: gentleBounce 2.5s ease-in-out infinite;
+    }
+
+    .hero-scroll svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    @keyframes gentleBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ===== SECTION SEPARATOR ===== */
+    .section-sep {
+      width: 60px;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 0 auto;
+    }
+
+    /* ===== WORK SECTION ===== */
+    .work-band {
+      background: var(--bg);
+      padding: 80px 0 20px;
+    }
+
+    .work-band .container-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .band-header {
+      font-family: 'Inter', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+    }
+
+    .work-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.5);
+      max-width: 700px;
+      line-height: 1.7;
+      margin-bottom: 56px;
+      letter-spacing: -0.01em;
+    }
+
+
+    /* ===== FLOATING NAV ===== */
+    .floating-nav {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      gap: 4px;
+      background: rgba(30,30,30,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 100px;
+      padding: 5px 6px;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .floating-nav.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .floating-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 18px;
+      transition: all 0.2s;
+    }
+
+    .floating-nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .floating-nav a.active {
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* ===== CONTENT (LIFE) ===== */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 24px 100px;
+      position: relative;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin: 8px 0 28px;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 64px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-title {
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 6px;
+    }
+
+    /* Experience */
+    .exp-item {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+
+    .exp-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 7px;
+    }
+
+    .exp-dot {
+      width: 9px;
+      height: 9px;
+      min-width: 9px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+
+    .exp-dot.current {
+      background: var(--accent);
+    }
+
+    .exp-stem {
+      width: 1px;
+      flex: 1;
+      background: var(--border);
+      margin-top: 4px;
+    }
+
+    .exp-content h3 {
+      font-size: 1.12rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .exp-content h3 a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .exp-content h3 a:hover {
+      color: var(--accent);
+    }
+
+    .exp-content p a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: rgba(255,255,255,0.2);
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+
+    .exp-content p a:visited {
+      color: rgba(255,255,255,0.45);
+    }
+
+    .exp-content p a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+
+    .exp-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 2px 10px;
+      border-radius: 100px;
+      margin-left: 8px;
+      vertical-align: middle;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .exp-role {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.55);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    .exp-content p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+
+    /* Background cards */
+    .bg-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .bg-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 26px;
+    }
+
+    .bg-card .value {
+      font-size: 1.02rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .edu-list {
+      list-style: disc;
+      padding-left: 20px;
+      margin-top: 6px;
+    }
+
+    .edu-list li {
+      margin-bottom: 2px;
+    }
+
+    .bg-card > .value > a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1.15rem;
+    }
+
+    .bg-card a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .bg-card a:hover {
+      text-decoration: underline;
+    }
+
+    .capstone-link {
+      color: var(--text) !important;
+      text-decoration: underline !important;
+      text-decoration-color: rgba(255,255,255,0.2) !important;
+      text-underline-offset: 2px;
+      transition: color 0.3s ease, text-decoration-color 0.3s ease;
+    }
+
+    .capstone-link:hover {
+      color: var(--accent) !important;
+      text-decoration-color: var(--accent) !important;
+    }
+
+    /* Photo gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 3/4;
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #fff;
+      background: linear-gradient(transparent, rgba(0,0,0,0.45));
+      border-radius: 0 0 12px 12px;
+    }
+
+    .gallery-placeholder {
+      color: rgba(255,255,255,0.25);
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 12px;
+    }
+
+    /* Bookshelf */
+    .bookshelf-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .shuffle-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 100px;
+      padding: 6px 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .shuffle-btn:hover {
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .shuffle-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .book-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 26px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .book-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .book-card .book-title {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .book-card .book-author {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .bookshelf-note {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-top: 12px;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    /* Travel Recs */
+    .travel-region {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.25);
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .travel-region:first-child {
+      margin-top: 0;
+    }
+
+    .travel-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .travel-tag {
+      display: inline-block;
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 8px 20px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .travel-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .travel-tag.static {
+      cursor: default;
+    }
+
+    .travel-tag.static:hover {
+      border-color: var(--border);
+      color: var(--text);
+      background: var(--card-bg);
+    }
+
+    .travel-tag .travel-date {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      margin-left: 4px;
+    }
+
+
+    /* Footer */
+    .footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.25);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer a {
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer a:hover {
+      color: var(--accent);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero-content h1 { font-size: 2.6rem; }
+      .hero-headshot { width: 100px; height: 100px; margin-bottom: 28px; }
+      .hero-nav { padding: 20px 20px; gap: 24px; }
+      .hero-tagline { font-size: 1rem; }
+      .hero-location { font-size: 0.95rem; gap: 12px; }
+      .band-header { font-size: 2rem; }
+      .work-band { padding: 60px 0 24px; }
+      .work-band .container-inner { padding: 0 20px; }
+      .work-subtitle { font-size: 0.95rem; margin-bottom: 40px; }
+      .container { padding: 32px 20px 64px; }
+      .section { margin-bottom: 48px; }
+      .bg-grid { grid-template-columns: 1fr; }
+      .bg-grid[style] { grid-template-columns: repeat(2, auto) !important; }
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .book-grid { grid-template-columns: 1fr; gap: 10px; }
+      .book-card { padding: 18px 20px; }
+      .travel-tag { font-size: 0.85rem; padding: 7px 16px; }
+      .travel-region { font-size: 0.75rem; }
+      .footer { font-size: 0.78rem; }
+      .floating-nav { bottom: 16px; right: 16px; }
+      .exp-item { gap: 14px; margin-bottom: 28px; }
+      .exp-content h3 { font-size: 1.02rem; }
+      .exp-content p { font-size: 0.9rem; }
+      .exp-role { font-size: 0.88rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== DARK HERO ===== -->
+  <section class="hero" id="top">
+    <nav class="hero-nav">
+      <a href="#work">Work</a>
+      <a href="#life">Life</a>
+    </nav>
+    <div class="hero-content">
+      <img class="hero-headshot" src="headshot.jpg" alt="Diana Liu" onerror="this.style.display='none'">
+      <h1>Diana D. Liu</h1>
+      <p class="hero-tagline">Exploring, thinking, and learning.</p>
+      <div class="hero-location">
+        SF Bay Area <span class="sep">|</span> <a href="https://www.linkedin.com/in/dianadliu/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== WORK SECTION ===== -->
+  <div class="work-band" id="work">
+    <div class="container-inner">
+      <h2 class="band-header">Work</h2>
+      <p class="work-subtitle">Working on Claude Code at Anthropic. Previously worked in management consulting, B2B SaaS startups, and big tech.</p>
+
+    <section class="section">
+      <div class="section-title">Career Journey</div>
+      <div class="divider"></div>
+
+      <div class="exp-item">
+        <div class="exp-line">
+          <div class="exp-dot current"></div>
+          <div class="exp-stem"></div>
+        </div>
+        <div class="exp-content">
+          <h3><a href="https://www.anthropic.com/" target="_blank" rel="noopener">Anthropic</a> <span class="exp-tag">Current</span></h3>
+          <div class="exp-role">Product Operations Manager, Claude Code</div>
+          <p>Connecting strategy to execution across Growth, Enterprise, and Verticals.</p>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-line">
+          <div class="exp-dot"></div>
+          <div class="exp-stem"></div>
+        </div>
+        <div class="exp-content">
+          <h3><a href="https://usdsjv.tiktok.com/" target="_blank" rel="noopener">TikTok USDS Joint Venture</a></h3>
+          <div class="exp-role">Technical Program Manager</div>
+          <p>Managed technical programs and led security and infrastructure initiatives to protect U.S. creator and user data.</p>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-line">
+          <div class="exp-dot"></div>
+          <div class="exp-stem"></div>
+        </div>
+        <div class="exp-content">
+          <h3><a href="https://tryfinch.com/" target="_blank" rel="noopener">Finch</a></h3>
+          <div class="exp-role">First Business Hire</div>
+          <p>Joined 4 months after seed funding and scaled company through $40M Series B. Started and built out product operations, data security, business operations, customer support, and product partnerships.</p>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-line">
+          <div class="exp-dot"></div>
+          <div class="exp-stem"></div>
+        </div>
+        <div class="exp-content">
+          <h3><a href="https://checkr.com/" target="_blank" rel="noopener">Checkr</a></h3>
+          <div class="exp-role">Product & Quality Operations Specialist</div>
+          <p>Background check compliance, project management, and working with data. Passionate about <a href="https://checkr.com/blog/what-are-fair-chance-hiring-practices">Fair Chance Hiring</a>.</p>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-line">
+          <div class="exp-dot"></div>
+          <div class="exp-stem"></div>
+        </div>
+        <div class="exp-content">
+          <h3><a href="https://www.deloitte.com/us/en.html" target="_blank" rel="noopener">Deloitte</a></h3>
+          <div class="exp-role">Management Consultant</div>
+          <p>Specialized in HR information system data architecture and process design for F10 tech companies.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Education</div>
+      <div class="divider"></div>
+      <div class="bg-card">
+        <div class="value">
+          <a href="https://www.berkeley.edu/">University of California, Berkeley</a>
+          <ul class="edu-list">
+            <li>M.S. Information & Data Science (<a class="capstone-link" href="https://www.ischool.berkeley.edu/projects/2025/meetupai" target="_blank" rel="noopener">Capstone Project</a>)</li>
+            <li>B.A. Economics</li>
+            <li>B.S. Business Administration</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Career Interests</div>
+      <div class="divider"></div>
+      <div class="bg-grid" style="grid-template-columns: repeat(3, auto); gap: 10px;">
+        <span class="travel-tag static" style="text-align:center;">AI</span>
+        <span class="travel-tag static" style="text-align:center;">Data & Product Quality</span>
+        <span class="travel-tag static" style="text-align:center;">Trust & Safety</span>
+        <span class="travel-tag static" style="text-align:center;">Data Compliance</span>
+        <span class="travel-tag static" style="text-align:center;">Process & Policy Design</span>
+        <span class="travel-tag static" style="text-align:center;">Program Management</span>
+      </div>
+    </section>
+
+    </div><!-- end container-inner -->
+  </div><!-- end work-band -->
+
+  <!-- ===== LIFE SECTION ===== -->
+  <div class="container" id="life">
+
+    <h2 class="band-header">Life</h2>
+
+    <section class="section">
+      <div class="section-title">Personal Interests</div>
+      <div class="divider"></div>
+      <div class="bg-grid" style="grid-template-columns: repeat(4, auto); gap: 10px;">
+        <span class="travel-tag static" style="text-align:center;">Traveling & Hiking</span>
+        <span class="travel-tag static" style="text-align:center;">Reading</span>
+        <span class="travel-tag static" style="text-align:center;">Film</span>
+        <span class="travel-tag static" style="text-align:center;">Weightlifting</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="bookshelf-header">
+        <div class="section-title">Photos</div>
+        <button class="shuffle-btn" onclick="shufflePhotos()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line>
+            <polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line>
+            <line x1="4" y1="4" x2="9" y2="9"></line>
+          </svg>
+          Shuffle
+        </button>
+      </div>
+      <div class="divider"></div>
+      <div class="gallery" id="photoGallery"></div>
+    </section>
+
+    <section class="section">
+      <div class="bookshelf-header">
+        <div class="section-title">From My Bookshelf</div>
+        <button class="shuffle-btn" onclick="shuffleBooks()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line>
+            <polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line>
+            <line x1="4" y1="4" x2="9" y2="9"></line>
+          </svg>
+          Shuffle
+        </button>
+      </div>
+      <div class="divider"></div>
+      <div class="book-grid" id="bookGrid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Travel Recs</div>
+      <div class="divider"></div>
+
+      <div class="travel-region">Asia</div>
+      <div class="travel-grid">
+        <a class="travel-tag" href="https://dianaliu.notion.site/Japan-Tokyo-Mt-Fuji-Kyoto-March-23-90a203d970894dc78e13555b3f09cf16" target="_blank" rel="noopener">Japan (Tokyo, Mt. Fuji, Kyoto) <span class="travel-date">Mar '23</span></a>
+        <a class="travel-tag" href="https://dianaliu.notion.site/Taipei-Taiwan-Aug-24-e08521dcd08e4aa0bd3762488aa1eedf" target="_blank" rel="noopener">Taipei, Taiwan <span class="travel-date">Aug '24</span></a>
+      </div>
+
+      <div class="travel-region">Europe</div>
+      <div class="travel-grid">
+        <a class="travel-tag" href="https://dianaliu.notion.site/Athens-Greece-Feb-23-d454e1de686f471bac8837c0530cd239" target="_blank" rel="noopener">Athens, Greece <span class="travel-date">Feb '23</span></a>
+      </div>
+
+      <div class="travel-region">North America</div>
+      <div class="travel-grid">
+        <a class="travel-tag" href="https://dianaliu.notion.site/Banff-National-Park-Canada-Jul-22-Aug-23-e0f47c8f0dcf4cd4a244070a8bb138f7" target="_blank" rel="noopener">Banff National Park, Canada <span class="travel-date">Jul '22, Aug '23</span></a>
+        <a class="travel-tag" href="https://dianaliu.notion.site/Mexico-City-MX-March-22-8138bb915e47445b84f14e512b760917" target="_blank" rel="noopener">Mexico City, MX <span class="travel-date">Mar '22</span></a>
+        <a class="travel-tag" href="https://dianaliu.notion.site/New-Haven-CT-April-23-March-25-be67062d0dbb4f0d8601e617c27af2a7" target="_blank" rel="noopener">New Haven, CT <span class="travel-date">Apr '23, Mar '25</span></a>
+        <a class="travel-tag" href="https://dianaliu.notion.site/Salt-Lake-City-UT-Jan-23-575ae8015dcb4dd59a53281941ba8c27" target="_blank" rel="noopener">Salt Lake City, UT <span class="travel-date">Jan '23</span></a>
+        <a class="travel-tag" href="https://dianaliu.notion.site/Yellowstone-Grand-Teton-National-Parks-June-23-5eb7cfdb35f2416781261284f1fe1853" target="_blank" rel="noopener">Yellowstone & Grand Teton <span class="travel-date">Jun '23</span></a>
+      </div>
+
+      <div class="travel-region">Oceania</div>
+      <div class="travel-grid">
+        <a class="travel-tag" href="https://dianaliu.notion.site/Kauai-HI-April-22-c1508b0d429f4dd98257b1bb4e7277c0" target="_blank" rel="noopener">Kauai, HI <span class="travel-date">Apr '22</span></a>
+        <a class="travel-tag" href="https://dianaliu.notion.site/Maui-HI-Dec-22-Dec-24-31b3065f691a4f69b831685fc4fd1d01" target="_blank" rel="noopener">Maui, HI <span class="travel-date">Dec '22, Dec '24</span></a>
+        <a class="travel-tag" href="https://dianaliu.notion.site/Oahu-HI-Oct-22-Nov-23-a58a3881fce949f9bec006f94ffe6189" target="_blank" rel="noopener">Oahu, HI <span class="travel-date">Oct '22, Nov '23</span></a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Diana D. Liu &nbsp;|&nbsp; Last updated March 2026 &nbsp;|&nbsp; Built with <a href="https://code.claude.com/docs/en/overview" target="_blank">Claude Code</a>
+    </footer>
+  </div>
+
+  <!-- ===== FLOATING NAV ===== -->
+  <nav class="floating-nav" id="floatingNav">
+    <a href="#top">Top</a>
+    <a href="#work">Work</a>
+    <a href="#life">Life</a>
+  </nav>
+
+<script>
+  // Smooth scroll for all nav links
+  document.querySelectorAll('.hero-nav a, .floating-nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Floating nav: show after scrolling past hero, highlight active section
+  const floatingNav = document.getElementById('floatingNav');
+  const sections = { top: document.getElementById('top'), work: document.getElementById('work'), life: document.getElementById('life') };
+  const navLinks = floatingNav.querySelectorAll('a');
+
+  function updateFloatingNav() {
+    const scrollY = window.scrollY;
+    const heroHeight = document.querySelector('.hero').offsetHeight;
+
+    // Show/hide
+    if (scrollY > heroHeight * 0.6) {
+      floatingNav.classList.add('visible');
+    } else {
+      floatingNav.classList.remove('visible');
+    }
+
+    // Active state
+    const lifeTop = sections.life.getBoundingClientRect().top + scrollY;
+    const workTop = sections.work.getBoundingClientRect().top + scrollY;
+
+    navLinks.forEach(l => l.classList.remove('active'));
+    if (scrollY + window.innerHeight / 2 >= lifeTop) {
+      navLinks[2].classList.add('active'); // Life
+    } else if (scrollY + 100 >= workTop) {
+      navLinks[1].classList.add('active'); // Work
+    }
+  }
+
+  window.addEventListener('scroll', updateFloatingNav, { passive: true });
+  updateFloatingNav();
+
+  const bookAuthors = {
+    "The Alchemist": "Paulo Coelho",
+    "The Glass Castle": "Jeannette Walls",
+    "Middlesex": "Jeffrey Eugenides",
+    "Never Let Me Go": "Kazuo Ishiguro",
+    "The Godfather": "Mario Puzo",
+    "Evicted": "Matthew Desmond",
+    "When Breath Becomes Air": "Paul Kalanithi",
+    "Killers of the Flower Moon": "David Grann",
+    "The Devil in the White City": "Erik Larson",
+    "Dance Dance Dance": "Haruki Murakami",
+    "Eleven Minutes": "Paulo Coelho",
+    "The Sun and Her Flowers": "Rupi Kaur",
+    "The Tea Girl of Hummingbird Lane": "Lisa See",
+    "Blind Willow, Sleeping Woman": "Haruki Murakami",
+    "Wind/Pinball": "Haruki Murakami",
+    "The Hundred Secret Senses": "Amy Tan",
+    "I Know Why the Caged Bird Sings": "Maya Angelou",
+    "You Don't Have to Say You Love Me": "Sherman Alexie",
+    "Americanah": "Chimamanda Ngozi Adichie",
+    "How to Be a Woman": "Caitlin Moran",
+    "Kitchen Confidential": "Anthony Bourdain",
+    "Red Sorghum": "Mo Yan",
+    "Interpreter of Maladies": "Jhumpa Lahiri",
+    "Half of a Yellow Sun": "Chimamanda Ngozi Adichie",
+    "The Namesake": "Jhumpa Lahiri",
+    "Quiet": "Susan Cain",
+    "The Defining Decade": "Meg Jay",
+    "Educated": "Tara Westover",
+    "Nothing to Envy": "Barbara Demick",
+    "Sing, Unburied, Sing": "Jesmyn Ward",
+    "I'll Be Gone in the Dark": "Michelle McNamara",
+    "The Millionaire Next Door": "Thomas J. Stanley",
+    "If Beale Street Could Talk": "James Baldwin",
+    "Heartland": "Sarah Smarsh",
+    "The Lost City of the Monkey God": "Douglas Preston",
+    "Warlight": "Michael Ondaatje",
+    "In the Garden of Beasts": "Erik Larson",
+    "In Cold Blood": "Truman Capote",
+    "Where the Crawdads Sing": "Delia Owens",
+    "Born a Crime": "Trevor Noah",
+    "Minor Detail": "Adania Shibli",
+    "Ikigai": "H\u00e9ctor Garc\u00eda",
+    "Sapiens": "Yuval Noah Harari",
+    "Giovanni's Room": "James Baldwin",
+    "Mind Hunter": "John Douglas",
+    "Everything I Never Told You": "Celeste Ng",
+    "The Liars' Club": "Mary Karr",
+    "Maybe You Should Talk to Someone": "Lori Gottlieb",
+    "A Cook's Tour": "Anthony Bourdain",
+    "The Sun Also Rises": "Ernest Hemingway",
+    "For Whom the Bell Tolls": "Ernest Hemingway",
+    "Automating Inequality": "Virginia Eubanks",
+    "Homegoing": "Yaa Gyasi",
+    "Barbarian Days": "William Finnegan",
+    "Calypso": "David Sedaris",
+    "Interior Chinatown": "Charles Yu",
+    "The Goldfinch": "Donna Tartt",
+    "Rules of Civility": "Amor Towles",
+    "The Nickel Boys": "Colson Whitehead",
+    "A Gentleman in Moscow": "Amor Towles",
+    "Minor Feelings": "Cathy Park Hong",
+    "A Little Life": "Hanya Yanagihara",
+    "Trick Mirror": "Jia Tolentino",
+    "On Earth We're Briefly Gorgeous": "Ocean Vuong",
+    "Wow, No Thank You.": "Samantha Irby",
+    "The Sympathizer": "Viet Thanh Nguyen",
+    "The Underground Railroad": "Colson Whitehead",
+    "The Great Believers": "Rebecca Makkai",
+    "The Secret History": "Donna Tartt",
+    "The Overstory": "Richard Powers",
+    "There There": "Tommy Orange",
+    "The Little Friend": "Donna Tartt",
+    "The God of Small Things": "Arundhati Roy",
+    "The Garden of Evening Mists": "Tan Twan Eng",
+    "Dune": "Frank Herbert",
+    "Tattoos on the Heart": "Gregory Boyle",
+    "Barking to the Choir": "Gregory Boyle",
+    "Raise the Red Lantern": "Su Tong",
+    "To Live": "Yu Hua",
+    "The Golden Compass": "Philip Pullman",
+    "Earth Passages": "Madeleine Thien",
+    "Sparrow in the Razor Wire": "Quan Barry",
+    "A Tree Grows in Brooklyn": "Betty Smith",
+    "Crying in H Mart": "Michelle Zauner",
+    "Know My Name": "Chanel Miller",
+    "Afterparties": "Anthony Veasna So",
+    "Seeing Ghosts": "Kat Chow",
+    "Not Yo' Butterfly": "Nobuko Miyamoto",
+    "City of Girls": "Elizabeth Gilbert",
+    "Breasts and Eggs": "Mieko Kawakami",
+    "The Five Wounds": "Kirstin Valdez Quade",
+    "We Measure the Earth with Our Bodies": "Tsering Yangzom Lama",
+    "Night of the Living Rez": "Morgan Talty",
+    "The Psychology of Money": "Morgan Housel",
+    "Uncanny Valley": "Anna Wiener",
+    "Stay True": "Hua Hsu",
+    "The Lord of the Rings": "J.R.R. Tolkien",
+    "Chasing the Scream": "Johann Hari",
+    "The Paper Menagerie": "Ken Liu",
+    "Circe": "Madeline Miller",
+    "Our Missing Hearts": "Celeste Ng",
+    "The Hidden Girl": "Ken Liu",
+    "The Three-Body Problem": "Liu Cixin",
+    "House of Sticks": "Ly Tran",
+    "All This Could Be Different": "Sarah Thankam Mathews",
+    "Four Treasures of the Sky": "Jenny Tinghui Zhang",
+    "Peach Blossom Spring": "Melissa Fu",
+    "Notes of a Crocodile": "Qiu Miaojin",
+    "Little Fires Everywhere": "Celeste Ng",
+    "On the Shortness of Life": "Seneca",
+    "The Wind-Up Bird Chronicle": "Haruki Murakami",
+    "1Q84": "Haruki Murakami",
+    "Hard-Boiled Wonderland and the End of the World": "Haruki Murakami",
+    "The Dark Forest": "Liu Cixin",
+    "Death's End": "Liu Cixin",
+    "Poverty, by America": "Matthew Desmond",
+    "The Fifth Season": "N.K. Jemisin",
+    "The Stone Sky": "N.K. Jemisin",
+    "Someone Who Will Love You in All Your Damaged Glory": "Raphael Bob-Waksberg",
+    "Do Androids Dream of Electric Sheep?": "Philip K. Dick",
+    "Invisible Child": "Andrea Elliott",
+    "Good Morning, Monster": "Catherine Gildiner",
+    "Kindred": "Octavia E. Butler",
+    "Tomorrow, and Tomorrow, and Tomorrow": "Gabrielle Zevin",
+    "A Game of Thrones": "George R.R. Martin",
+    "A Storm of Swords": "George R.R. Martin",
+    "Man's Search for Meaning": "Viktor E. Frankl",
+    "Just Mercy": "Bryan Stevenson",
+    "This Boy's Life": "Tobias Wolff",
+    "A Woman Is No Man": "Etaf Rum",
+    "Five Star Billionaire": "Tash Aw",
+    "Children of Dune": "Frank Herbert",
+    "The Worlds I See": "Fei-Fei Li",
+    "Private Equity": "Carrie Sun",
+    "A Map for the Missing": "Belinda Huijuan Tang",
+    "Songs on Endless Repeat": "Anthony Veasna So",
+    "The Dispossessed": "Ursula K. Le Guin",
+    "The Left Hand of Darkness": "Ursula K. Le Guin",
+    "Beijing Comrades": "Bei Tong",
+    "Women, Race & Class": "Angela Y. Davis",
+    "Finding Me": "Viola Davis",
+    "The Will to Change": "bell hooks",
+    "Kim Jiyoung, Born 1982": "Cho Nam-Joo",
+    "Careless People": "Sarah Churchwell",
+    "All About Love": "bell hooks",
+    "Elsewhere": "Yan Ge",
+    "A Brief History of Intelligence": "Max Bennett",
+    "Piranesi": "Susanna Clarke",
+    "The Magician's Nephew": "C.S. Lewis",
+    "The Lion, the Witch and the Wardrobe": "C.S. Lewis",
+    "Prince Caspian": "C.S. Lewis",
+    "Breakneck": "Rachel Smith"
+  };
+
+  const fiveStarBooks = Object.keys(bookAuthors);
+
+  function shuffleArray(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function getGoodreadsUrl(title) {
+    const author = bookAuthors[title] || '';
+    return `https://www.goodreads.com/search?q=${encodeURIComponent(title + ' ' + author)}`;
+  }
+
+  let lastBookPicks = [];
+
+  function shuffleBooks() {
+    const grid = document.getElementById('bookGrid');
+    let picks;
+    do {
+      picks = shuffleArray(fiveStarBooks).slice(0, 3);
+    } while (picks.some(p => lastBookPicks.includes(p)));
+    lastBookPicks = picks;
+
+    grid.style.opacity = '0';
+    grid.style.transform = 'translateY(8px)';
+
+    setTimeout(() => {
+      grid.innerHTML = picks.map(title => {
+        const author = bookAuthors[title];
+        return `
+          <a class="book-card" href="${getGoodreadsUrl(title)}" target="_blank" rel="noopener">
+            <div class="book-title">${title}</div>
+            ${author ? `<div class="book-author">${author}</div>` : ''}
+          </a>
+        `;
+      }).join('');
+
+      requestAnimationFrame(() => {
+        grid.style.opacity = '1';
+        grid.style.transform = 'translateY(0)';
+      });
+    }, 100);
+  }
+
+  const grid = document.getElementById('bookGrid');
+  grid.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+  shuffleBooks();
+
+  // --- Photo Gallery ---
+  const lifePhotos = [
+    { src: 'photos/IMG_0135.jpg' },
+    { src: 'photos/IMG_0233.jpg' },
+    { src: 'photos/IMG_0250.jpg' },
+    { src: 'photos/IMG_0273.jpg' },
+    { src: 'photos/IMG_0605.jpg' },
+    { src: 'photos/IMG_1014.jpg' },
+    { src: 'photos/IMG_1230.jpg' },
+    { src: 'photos/IMG_1384.jpg' },
+    { src: 'photos/IMG_1386.jpg' },
+    { src: 'photos/IMG_1462.jpg' },
+    { src: 'photos/IMG_1483.jpg' },
+    { src: 'photos/IMG_1553.jpg' },
+    { src: 'photos/IMG_1885.jpg' },
+    { src: 'photos/IMG_2807.jpg' },
+    { src: 'photos/IMG_2982.jpg' },
+    { src: 'photos/IMG_2987.jpg' },
+    { src: 'photos/IMG_3095.jpg' },
+    { src: 'photos/IMG_3647.jpg' },
+    { src: 'photos/IMG_4161.jpg' },
+    { src: 'photos/IMG_4197.jpg' },
+    { src: 'photos/IMG_4203.jpg' },
+    { src: 'photos/IMG_4233.jpg' },
+    { src: 'photos/IMG_4284.jpg' },
+    { src: 'photos/IMG_5982.jpg' },
+    { src: 'photos/IMG_6524.jpg' },
+    { src: 'photos/IMG_6882.jpg' },
+    { src: 'photos/IMG_7646.jpg' },
+    { src: 'photos/IMG_7649.jpg' },
+    { src: 'photos/IMG_7674.jpg' },
+    { src: 'photos/IMG_8171.jpg' },
+    { src: 'photos/IMG_8458.jpg' },
+    { src: 'photos/IMG_8506.jpg' },
+    { src: 'photos/IMG_8513.jpg' },
+    { src: 'photos/IMG_8535.jpg' },
+    { src: 'photos/IMG_8624.jpg' },
+    { src: 'photos/IMG_8649.jpg' },
+    { src: 'photos/IMG_8650.jpg' },
+    { src: 'photos/IMG_8654.jpg' },
+    { src: 'photos/IMG_8802.jpg' },
+    { src: 'photos/IMG_8836.jpg' },
+    { src: 'photos/IMG_8859.jpg' },
+    { src: 'photos/IMG_8976.jpg' },
+    { src: 'photos/IMG_9878.jpg' },
+    { src: 'photos/IMG_9958.jpg' },
+  ];
+
+  const photoGallery = document.getElementById('photoGallery');
+  photoGallery.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+  let lastPhotoPicks = [];
+
+  function shufflePhotos() {
+    if (lifePhotos.length === 0) return;
+    let picks;
+    do {
+      picks = shuffleArray(lifePhotos).slice(0, 3);
+    } while (picks.some(p => lastPhotoPicks.includes(p)));
+    lastPhotoPicks = picks;
+
+    photoGallery.style.opacity = '0';
+    photoGallery.style.transform = 'translateY(8px)';
+
+    setTimeout(() => {
+      photoGallery.innerHTML = picks.map(photo => `
+        <div class="gallery-item">
+          <img src="${photo.src}" alt="${photo.caption || ''}" loading="lazy">
+          ${photo.caption ? `<div class="gallery-caption">${photo.caption}</div>` : ''}
+        </div>
+      `).join('');
+
+      requestAnimationFrame(() => {
+        photoGallery.style.opacity = '1';
+        photoGallery.style.transform = 'translateY(0)';
+      });
+    }, 200);
+  }
+
+  if (lifePhotos.length === 0) {
+    photoGallery.innerHTML = `
+      <div class="gallery-item"><div class="gallery-placeholder">photo 1</div></div>
+      <div class="gallery-item"><div class="gallery-placeholder">photo 2</div></div>
+      <div class="gallery-item"><div class="gallery-placeholder">photo 3</div></div>
+    `;
+  } else {
+    shufflePhotos();
+  }
+</script>
+</body>
+</html>
