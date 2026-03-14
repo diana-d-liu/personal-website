@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taipei — Diana D. Liu</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <meta name="referrer" content="no-referrer">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: rgba(255,255,255,0.06);
+      --text: #e5e5e5;
+      --text-muted: rgba(255,255,255,0.45);
+      --accent: #e8734a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Back link */
+    .back-link {
+      position: fixed;
+      top: 28px;
+      left: 28px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      z-index: 100;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 120px 40px 60px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+    .hero .trip-date {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Content */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+
+    /* Notes section */
+    .notes {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+    .notes p { margin-bottom: 12px; }
+    .notes p:last-child { margin-bottom: 0; }
+    .notes a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    .notes a:hover { opacity: 0.8; }
+
+    /* City section */
+    .city-section {
+      margin-bottom: 56px;
+    }
+    .city-header {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .city-notes {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+    .city-notes a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .city-notes a:hover { opacity: 0.8; }
+
+    /* Category */
+    .category {
+      margin-bottom: 28px;
+    }
+    .category-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* Place cards */
+    .place-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .place {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .place:last-child { border-bottom: none; }
+    .place-name {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 450;
+      transition: color 0.3s ease;
+      flex-shrink: 0;
+    }
+    .place-name:hover { color: var(--accent); }
+    .place-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* Also worth visiting */
+    .also-section {
+      margin-top: 20px;
+    }
+    .also-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 10px;
+    }
+    .also-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .also-tag {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    .also-tag:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Divider */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 48px 0;
+    }
+
+    /* Footer */
+    .travel-footer {
+      text-align: center;
+      padding: 24px 40px 48px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .travel-footer a {
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .travel-footer a:hover { color: var(--accent); }
+
+    /* Notable mention */
+    .notable-mention {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-top: 48px;
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    /* Top nav */
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      padding: 28px 40px;
+      gap: 24px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 100;
+    }
+    .top-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .top-nav a:hover { color: #fff; }
+
+    /* Floating nav */
+    .floating-nav {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      gap: 4px;
+      background: rgba(30,30,30,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 100px;
+      padding: 5px 6px;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .floating-nav.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .floating-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 18px;
+      transition: all 0.2s;
+    }
+    .floating-nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+    }
+    .floating-nav a.active {
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .back-link { top: 16px; left: 16px; font-size: 0.82rem; }
+      .top-nav { padding: 20px 20px; gap: 14px; }
+      .top-nav a { font-size: 0.75rem; }
+      .hero { padding: 80px 20px 40px; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero .subtitle { font-size: 0.95rem; }
+      .content { padding: 0 20px 60px; }
+      .notes { padding: 20px 24px; font-size: 0.88rem; }
+      .city-header { font-size: 1.5rem; }
+      .place-name { font-size: 0.9rem; }
+      .place-note { font-size: 0.78rem; }
+      .floating-nav { bottom: 16px; right: 16px; }
+      .floating-nav a { font-size: 0.72rem; padding: 5px 10px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="../#life" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+
+  <nav class="top-nav">
+    <a href="#ximen">Ximen</a>
+    <a href="#guting">Guting</a>
+    <a href="#gongguan">Gongguan</a>
+    <a href="#zhongshan">Zhongshan</a>
+    <a href="#zhongxiao">Zhongxiao</a>
+    <a href="#dongmen">Dongmen</a>
+    <a href="#other">Other</a>
+  </nav>
+
+  <nav class="floating-nav" id="floatingNav">
+    <a href="#ximen">Ximen</a>
+    <a href="#guting">Guting</a>
+    <a href="#gongguan">Gongguan</a>
+    <a href="#zhongshan">Zhongshan</a>
+    <a href="#zhongxiao">Zhongxiao</a>
+    <a href="#dongmen">Dongmen</a>
+    <a href="#other">Other</a>
+  </nav>
+
+  <div class="hero">
+    <h1>Taipei</h1>
+    <div class="subtitle">Taiwan</div>
+    <div class="trip-date">August 2024 · ~2 weeks</div>
+  </div>
+
+  <div class="content">
+
+    <!-- Overall Notes -->
+    <div class="notes">
+      <p>Spent 2 weeks here with the primary goal of visiting my younger sister, who was living in Taipei for the whole summer. Most of our time was spent around the green line (MRT), so there are a lot of neighborhoods I didn't get to explore but will do so next time.</p>
+      <p>Public transit is amazing in Taipei — you can use Google Maps and the instructions will be really clear for which color line to take, which exit to leave the station from, etc. If you don't want to take public transit, Uber is pretty popular in Taipei.</p>
+      <p>Stayed in <a href="https://maps.app.goo.gl/ewRxso1HWDfJogEV6" target="_blank" rel="noopener">Ximen</a> area and really loved it — hotel and Airbnb options are plentiful, inexpensive, modern, and super close to lots of restaurants/gift shops/clothing shops, as well as the Ximen MRT station.</p>
+      <p>You will need cash for a lot of spots — ATMs are very accessible, you can usually find them in FamilyMarts or 7-11s.</p>
+    </div>
+
+    <!-- Ximen -->
+    <div class="city-section" id="ximen">
+      <h2 class="city-header">Ximen Station</h2>
+      <div class="city-notes">Green & blue MRT lines</div>
+
+      <div class="category">
+        <div class="category-label">Restaurants & Cafes</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/4gfTyN2vZ9ZcC4dr7" target="_blank" rel="noopener">Ay-Chung Flour-Rice Noodle</a>
+            <span class="place-note">Inexpensive, delicious noodles with a strong peppery taste</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/JsKU7imihv2DaDss6" target="_blank" rel="noopener">God Guo Hot Pot</a>
+            <span class="place-note">I love this place, went 3 times</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/CZBmdK6LABggU5Mr9" target="_blank" rel="noopener">New Mala Hot Pot</a>
+            <span class="place-note">Another good hot pot restaurant</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Shopping & Entertainment</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/XbWXNJkL8iQXVfFJA" target="_blank" rel="noopener">America Street</a>
+            <span class="place-note">Awesome murals and cool streetwear shops</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/5Q6T6mzitTBiaLGKA" target="_blank" rel="noopener">LUX CINEMA</a>
+            & <a class="place-name" href="https://maps.app.goo.gl/nBBMoW1rPDoEAbbQA" target="_blank" rel="noopener">in89 Deluxe Digital Cinema</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/FmduDoAkitzdpn1D7" target="_blank" rel="noopener">Japanese Drugstore</a>
+            <span class="place-note">Great for Japanese goods</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/M3kX5g4ycPXHQdkr7" target="_blank" rel="noopener">MuMu Nail</a>
+            <span class="place-note">The owner, Tina, is so nice — highly recommend for mani/pedi</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/1hnhT6ii8hJoGwzT9" target="_blank" rel="noopener">POYA</a>
+            <span class="place-note">Great for cosmetics, gifts, etc.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Guting -->
+    <div class="city-section" id="guting">
+      <h2 class="city-header">Guting Station</h2>
+      <div class="city-notes">Green & yellow MRT lines</div>
+
+      <div class="category">
+        <div class="category-label">Restaurants & Cafes</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/ZkN36q8EKAQpqD2b6" target="_blank" rel="noopener">Cafe Macho</a>
+            <span class="place-note">Great coffee shop recommended by a local friend</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/wH7ddw9gBc92cGgU8" target="_blank" rel="noopener">Ding Yuan Soy Milk</a>
+            <span class="place-note">Great for breakfast — line was not as long as other spots like Fu Hang</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/mcrRDG1QqqyEkuCW9" target="_blank" rel="noopener">Mr. Tree</a>
+            <span class="place-note">Highly recommend if you have kids, owned by a friend</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Gongguan -->
+    <div class="city-section" id="gongguan">
+      <h2 class="city-header">Gongguan Station</h2>
+      <div class="city-notes">Green MRT line</div>
+
+      <div class="category">
+        <div class="category-label">Restaurants & Cafes</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/dNonkuyrQnaiYcW8A" target="_blank" rel="noopener">Coffee Boy Hop Man</a>
+            <span class="place-note">Quiet, relaxing coffee shop</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/DQhwG8n9FyjGcMPeA" target="_blank" rel="noopener">Da Ming Tea Shop</a>
+            <span class="place-note">Great boba made with green tea</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/sSt15WHRbw2v6viZ9" target="_blank" rel="noopener">Hsiung Chi Scallion Pancake</a>
+            <span class="place-note">Night market stand — delicious scallion pancake</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/Bfcg9pc1Az4nvkpYA" target="_blank" rel="noopener">Mr. Chef Snow & Tofu</a>
+            <span class="place-note">Great shaved ice</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Shopping</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/AJCbDiueHHET4dRHA" target="_blank" rel="noopener">Fembooks</a>
+            <span class="place-note">Amazing bookstore with an impressive English-language section</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Zhongshan -->
+    <div class="city-section" id="zhongshan">
+      <h2 class="city-header">Zhongshan Station</h2>
+      <div class="city-notes">Green & red MRT lines</div>
+
+      <div class="category">
+        <div class="category-label">Restaurants & Shopping</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/r1F6ZUBSBdYWh6H37" target="_blank" rel="noopener">PAR STORE</a>
+            <span class="place-note">Love this store that my sister took me to</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/ASfLd2YSJQxyHSTr9" target="_blank" rel="noopener">Rose Food</a>
+            <span class="place-note">Great for lunch</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Zhongxiao Xinsheng -->
+    <div class="city-section" id="zhongxiao">
+      <h2 class="city-header">Zhongxiao Xinsheng Station</h2>
+      <div class="city-notes">Blue MRT line</div>
+
+      <div class="category">
+        <div class="category-label">Restaurants & Cafes</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/wpNr4Ln8BB2aTiCKA" target="_blank" rel="noopener">Hailstorm Tofu Pudding</a>
+            <span class="place-note">Loved their tofu pudding dessert</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/75LhtZDDXvhkdCCR7" target="_blank" rel="noopener">Takumi Dumplings</a>
+            <span class="place-note">Inexpensive, delicious dumplings</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category also-section">
+        <div class="also-label">On my list for next time</div>
+        <div class="also-list">
+          <a class="also-tag" href="https://maps.app.goo.gl/qAG2cnWLvPHpCVPA8" target="_blank" rel="noopener">Simple Kaffa Huashan</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Dongmen -->
+    <div class="city-section" id="dongmen">
+      <h2 class="city-header">Dongmen Station</h2>
+      <div class="city-notes">Red & yellow MRT lines</div>
+
+      <div class="category">
+        <div class="category-label">Shopping</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/BjR72QmQA7yWUaDr8" target="_blank" rel="noopener">LAI HAO</a>
+            <span class="place-note">Cute gift store right next to the tea shop</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/Qnf9PggBwp1sTrc67" target="_blank" rel="noopener">Youshan Tea Visit</a>
+            <span class="place-note">High quality, award-winning tea — great for gifts</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Other spots -->
+    <div class="city-section" id="other">
+      <h2 class="city-header">Other Spots</h2>
+
+      <div class="category">
+        <div class="category-label">Restaurants & Cafes</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/Tvvod8MC4ZbeMPhM6" target="_blank" rel="noopener">Pan's Cake</a>
+            <span class="place-note">My sister's favorite pineapple cake — the ones with egg yolk inside are amazing</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/Yiw4ctvR1AX4aUnS8" target="_blank" rel="noopener">Raohe Street Night Market</a>
+            <span class="place-note">Try the <a href="https://maps.app.goo.gl/6NiUuwC4pDmzNJuA9" target="_blank" rel="noopener">pepper buns</a> and <a href="https://maps.app.goo.gl/XDpULNQwRVnf9y9E8" target="_blank" rel="noopener">tangyuan</a> — go around 5pm for fewer crowds</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/mEVCJDQjdMvq98VDA" target="_blank" rel="noopener">Sunny Hills</a>
+            <span class="place-note">My favorite pineapple cake — they give you a complimentary cake and tea in-store</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Sightseeing</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://maps.app.goo.gl/7HpbiDaoUxomjAjZ7" target="_blank" rel="noopener">Taipei Fine Arts Museum</a>
+            <span class="place-note">Really, really loved this art museum</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category also-section">
+        <div class="also-label">Also worth visiting</div>
+        <div class="also-list">
+          <a class="also-tag" href="https://maps.app.goo.gl/1dXr1mA9RVLT9u2V6" target="_blank" rel="noopener">National Palace Museum</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="notable-mention">
+      Huge shoutout to my sister and my friends Eddie, Sabrina, Lisha, and Ashley for their recs. Didn't have time to hit everything so will need to go back soon!
+    </div>
+
+  </div>
+
+  <div class="travel-footer">
+    <a href="../">Diana D. Liu</a>
+  </div>
+
+  <script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('.top-nav a, .floating-nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Show/hide floating nav + highlight active section
+  const floatingNav = document.getElementById('floatingNav');
+  const sections = document.querySelectorAll('.city-section[id]');
+  window.addEventListener('scroll', () => {
+    floatingNav.classList.toggle('visible', window.scrollY > 400);
+
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 200) current = section.id;
+    });
+    document.querySelectorAll('.floating-nav a, .top-nav a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+  </script>
+</body>
+</html>

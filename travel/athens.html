@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Athens — Diana D. Liu</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <meta name="referrer" content="no-referrer">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: rgba(255,255,255,0.06);
+      --text: #e5e5e5;
+      --text-muted: rgba(255,255,255,0.45);
+      --accent: #e8734a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Back link */
+    .back-link {
+      position: fixed;
+      top: 28px;
+      left: 28px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      z-index: 100;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 120px 40px 60px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+    .hero .trip-date {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Content */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+
+    /* Notes section */
+    .notes {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+    .notes p { margin-bottom: 12px; }
+    .notes p:last-child { margin-bottom: 0; }
+    .notes a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    .notes a:hover { opacity: 0.8; }
+
+    /* City section */
+    .city-section {
+      margin-bottom: 56px;
+    }
+    .city-header {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .city-notes {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+    .city-notes a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .city-notes a:hover { opacity: 0.8; }
+
+    /* Category */
+    .category {
+      margin-bottom: 28px;
+    }
+    .category-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* Place cards */
+    .place-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .place {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .place:last-child { border-bottom: none; }
+    .place-name {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 450;
+      transition: color 0.3s ease;
+      flex-shrink: 0;
+    }
+    .place-name:hover { color: var(--accent); }
+    .place-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* Also worth visiting */
+    .also-section {
+      margin-top: 20px;
+    }
+    .also-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 10px;
+    }
+    .also-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .also-tag {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    .also-tag:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Divider */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 48px 0;
+    }
+
+    /* Footer */
+    .travel-footer {
+      text-align: center;
+      padding: 24px 40px 48px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .travel-footer a {
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .travel-footer a:hover { color: var(--accent); }
+
+    /* Top nav */
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      padding: 28px 40px;
+      gap: 32px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 100;
+    }
+    .top-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .top-nav a:hover { color: #fff; }
+
+    /* Floating nav */
+    .floating-nav {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      gap: 4px;
+      background: rgba(30,30,30,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 100px;
+      padding: 5px 6px;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .floating-nav.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .floating-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 18px;
+      transition: all 0.2s;
+    }
+    .floating-nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+    }
+    .floating-nav a.active {
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .back-link { top: 16px; left: 16px; font-size: 0.82rem; }
+      .top-nav { padding: 20px 20px; gap: 24px; }
+      .hero { padding: 80px 20px 40px; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero .subtitle { font-size: 0.95rem; }
+      .content { padding: 0 20px 60px; }
+      .notes { padding: 20px 24px; font-size: 0.88rem; }
+      .city-header { font-size: 1.5rem; }
+      .place-name { font-size: 0.9rem; }
+      .place-note { font-size: 0.78rem; }
+      .floating-nav { bottom: 16px; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="../#life" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+
+  <nav class="top-nav">
+    <a href="#athens">Athens</a>
+    <a href="#aegina">Aegina</a>
+    <a href="#meteora">Meteora</a>
+  </nav>
+
+  <nav class="floating-nav" id="floatingNav">
+    <a href="#athens">Athens</a>
+    <a href="#aegina">Aegina</a>
+    <a href="#meteora">Meteora</a>
+  </nav>
+
+  <div class="hero">
+    <h1>Athens</h1>
+    <div class="subtitle">Greece</div>
+    <div class="trip-date">February 2023</div>
+  </div>
+
+  <div class="content">
+
+    <!-- Overall Notes -->
+    <div class="notes">
+      <p>Will preface this by mentioning I'm a big Greek history/mythology fan and really enjoyed my time here, but another friend who went wasn't a big fan of history/mythology and didn't enjoy it as much — some friends prefer to simply visit the Greek islands which seem great too.</p>
+      <p>A friend recommends tip-based <a href="https://www.athensfreewalkingtour.com/" target="_blank" rel="noopener">walking tours</a> for the 1st or 2nd day of a trip, to both get a feel for the city and to get travel recommendations from the tour guide. Our guide turned out to be an ex-archaeologist who was very informed.</p>
+      <p>Would also recommend guided tours when visiting historic sites — we booked a few through <a href="https://www.getyourguide.com" target="_blank" rel="noopener">GetYourGuide</a> and were pretty happy with them.</p>
+      <p>Airbnbs weren't expensive — we found a fairly comfortable one that was really inexpensive and close to the Acropolis.</p>
+    </div>
+
+    <!-- Athens -->
+    <div class="city-section" id="athens">
+      <h2 class="city-header">Athens</h2>
+
+      <div class="category">
+        <div class="category-label">Restaurants & Cafes</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/Msj6UG2VFZXw6kwB9" target="_blank" rel="noopener">Opos Palia</a>
+            <span class="place-note">Delicious, fast, and fairly inexpensive</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/j3UY7F7hHci482H3A" target="_blank" rel="noopener">ROE Olive Products</a>
+            <span class="place-note">Family-owned olive shop — bought great olive oil as gifts. Farm is in Sparta</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Sightseeing</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/1K8oVoy9mEW2mpqg9" target="_blank" rel="noopener">Acropolis of Athens</a>
+            <span class="place-note">A must-visit, especially with a guided tour</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/dAvzyK3BroyFvTnM8" target="_blank" rel="noopener">Acropolis Museum</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/Re5Hb2RZD4rsaFaq6" target="_blank" rel="noopener">Athens Central Market</a>
+            <span class="place-note">Visited as part of a cooking class</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Shopping</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/6PBAYwYkajRfYxHW7" target="_blank" rel="noopener">Reset Thrift Shop</a>
+            <span class="place-note">Some pretty interesting items, the area had some cool shops in general</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category also-section">
+        <div class="also-label">On my list for next time</div>
+        <div class="also-list">
+          <a class="also-tag" href="https://goo.gl/maps/QNHb7aUdYPbZ7PNa6" target="_blank" rel="noopener">Ancient Agora</a>
+          <a class="also-tag" href="https://goo.gl/maps/ciuXpJ9oRzKzSYcw9" target="_blank" rel="noopener">Athens National Garden</a>
+          <a class="also-tag" href="https://www.getyourguide.com/athens-l91/from-athens-full-day-bus-trip-to-delphi-arachova-t212853/" target="_blank" rel="noopener">Delphi & Arachova</a>
+          <a class="also-tag" href="https://www.viator.com/tours/Athens/Hydra-Poros-and-Egina-Day-Cruise-from-Athens/d496-3140_27" target="_blank" rel="noopener">Hydra, Poros, Aegina Day Cruise</a>
+          <a class="also-tag" href="https://goo.gl/maps/nVL86Lpns5QLC78m6" target="_blank" rel="noopener">National Archaeological Museum</a>
+          <a class="also-tag" href="https://www.viator.com/Athens-attractions/Temple-of-Poseidon/d496-a3847" target="_blank" rel="noopener">Temple of Poseidon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Aegina -->
+    <div class="city-section" id="aegina">
+      <h2 class="city-header">Island of Aegina</h2>
+      <div class="city-notes">
+        Visited by ferry (~$20–30 Euro one way) from the <a href="https://goo.gl/maps/FCq5cvhRdiotSjrw7" target="_blank" rel="noopener">Port of Piraeus</a>. The island is apparently known for growing pistachios — the pistachio ice cream was amazing and we bought some roasted pistachios to bring home.
+      </div>
+
+      <div class="category">
+        <div class="category-label">Restaurants & Cafes</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/qaqfDtFAXc2UkTbM6" target="_blank" rel="noopener">Sirokos Restaurant</a>
+            <span class="place-note">Delicious lunch with a great view of the ocean</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Sightseeing</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/5YgXCAiAmg9rAmgi9" target="_blank" rel="noopener">Temple of Aphaia</a>
+            <span class="place-note">Gorgeous — both the structure and the view</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Meteora -->
+    <div class="city-section" id="meteora">
+      <h2 class="city-header">Meteora</h2>
+      <div class="city-notes">
+        An <strong>amazing</strong> place. We did a day trip tour from Athens (3–4 hour train ride, one way). Most time was spent on a shuttle, hopping on and off to take pics and visiting Christian monasteries. I would absolutely go back and spend a few days in the <a href="https://goo.gl/maps/MpqRxLaphdFRDkUu6" target="_blank" rel="noopener">village of Kastraki</a> near the monasteries.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="travel-footer">
+    <a href="../">Diana D. Liu</a>
+  </div>
+
+  <script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('.top-nav a, .floating-nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Show/hide floating nav + highlight active section
+  const floatingNav = document.getElementById('floatingNav');
+  const sections = document.querySelectorAll('.city-section[id]');
+  window.addEventListener('scroll', () => {
+    floatingNav.classList.toggle('visible', window.scrollY > 400);
+
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 200) current = section.id;
+    });
+    document.querySelectorAll('.floating-nav a, .top-nav a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+  </script>
+</body>
+</html>

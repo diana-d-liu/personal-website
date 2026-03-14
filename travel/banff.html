@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banff — Diana D. Liu</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <meta name="referrer" content="no-referrer">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: rgba(255,255,255,0.06);
+      --text: #e5e5e5;
+      --text-muted: rgba(255,255,255,0.45);
+      --accent: #e8734a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Back link */
+    .back-link {
+      position: fixed;
+      top: 28px;
+      left: 28px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      z-index: 100;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 120px 40px 60px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+    .hero .trip-date {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Content */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+
+    /* Notes section */
+    .notes {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+    .notes p { margin-bottom: 12px; }
+    .notes p:last-child { margin-bottom: 0; }
+    .notes a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    .notes a:hover { opacity: 0.8; }
+
+    /* City section */
+    .city-section {
+      margin-bottom: 56px;
+    }
+    .city-header {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .city-notes {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+    .city-notes a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .city-notes a:hover { opacity: 0.8; }
+
+    /* Category */
+    .category {
+      margin-bottom: 28px;
+    }
+    .category-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* Place cards */
+    .place-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .place {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .place:last-child { border-bottom: none; }
+    .place-name {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 450;
+      transition: color 0.3s ease;
+      flex-shrink: 0;
+    }
+    .place-name:hover { color: var(--accent); }
+    .place-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* Also worth visiting */
+    .also-section {
+      margin-top: 20px;
+    }
+    .also-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 10px;
+    }
+    .also-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .also-tag {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    .also-tag:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Divider */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 48px 0;
+    }
+
+    /* Footer */
+    .travel-footer {
+      text-align: center;
+      padding: 24px 40px 48px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .travel-footer a {
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .travel-footer a:hover { color: var(--accent); }
+
+    /* Top nav */
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      padding: 28px 40px;
+      gap: 32px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 100;
+    }
+    .top-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .top-nav a:hover { color: #fff; }
+
+    /* Floating nav */
+    .floating-nav {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      gap: 4px;
+      background: rgba(30,30,30,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 100px;
+      padding: 5px 6px;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .floating-nav.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .floating-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 18px;
+      transition: all 0.2s;
+    }
+    .floating-nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+    }
+    .floating-nav a.active {
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .back-link { top: 16px; left: 16px; font-size: 0.82rem; }
+      .top-nav { padding: 20px 20px; gap: 24px; }
+      .hero { padding: 80px 20px 40px; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero .subtitle { font-size: 0.95rem; }
+      .content { padding: 0 20px 60px; }
+      .notes { padding: 20px 24px; font-size: 0.88rem; }
+      .city-header { font-size: 1.5rem; }
+      .place-name { font-size: 0.9rem; }
+      .place-note { font-size: 0.78rem; }
+      .floating-nav { bottom: 16px; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="../#life" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+
+  <nav class="top-nav">
+    <a href="#eat">Eat</a>
+    <a href="#visit">Visit</a>
+  </nav>
+
+  <nav class="floating-nav" id="floatingNav">
+    <a href="#eat">Eat</a>
+    <a href="#visit">Visit</a>
+  </nav>
+
+  <div class="hero">
+    <h1>Banff National Park</h1>
+    <div class="subtitle">Canada</div>
+    <div class="trip-date">July 2022 & August 2023 · ~10 days</div>
+  </div>
+
+  <div class="content">
+
+    <!-- Overall Notes -->
+    <div class="notes">
+      <p>Stayed in <a href="https://goo.gl/maps/2ec3RhGqiKvpjvDWA" target="_blank" rel="noopener">Harvie Heights</a> for 10 days (more than enough time to explore Banff) — not too long of a drive from the usual tourist spots like Lake Louise or Lake Minnewanka.</p>
+      <p>Get bear spray if you're going hiking — we bought ours at <a href="https://goo.gl/maps/duDRuob2thPcRWPX7" target="_blank" rel="noopener">Ultimate Sports</a>, which was cheaper than renting it for a week. You can donate the bear spray to the NP visitor centers if you haven't used it (can't fly on airplanes with bear spray).</p>
+      <p>Banff is very busy in the summertime — I would recommend making dinner reservations, especially for Thurs–Sun.</p>
+    </div>
+
+    <!-- Places to eat -->
+    <div class="city-section" id="eat">
+      <h2 class="city-header">Places to Eat</h2>
+
+      <div class="category">
+        <div class="category-label">Coffee & Snacks</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/hF2QyvgjCH13C4Tm6" target="_blank" rel="noopener">Banff National Perk</a>
+            <span class="place-note">Matcha latte wasn't great but coffee seemed ok</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/eFnEjxcdycQ3Pvqv7" target="_blank" rel="noopener">COWS Banff</a>
+            <span class="place-note">Ice cream was just ok but had a cute gift store to browse</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/LX4Zh7ZfqSSzkNFt6" target="_blank" rel="noopener">Evelyn's Coffee Bar</a>
+            <span class="place-note">Fairly good matcha latte and their strawberry rhubarb pie isn't too bad</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/6xi5XvX63nV6GSCM8" target="_blank" rel="noopener">MILK TEA at BANFF</a>
+            <span class="place-note">Really good boba</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Restaurants</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/QNgWbc2KBF47iGJA6" target="_blank" rel="noopener">Bluebird Steakhouse & Patio</a>
+            <span class="place-note">Lunch was just ok and a little overpriced; dinner menu looked good</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/HRmQXxdvNsdXBTT7A" target="_blank" rel="noopener">Coyotes Southwestern Grill</a>
+            <span class="place-note">Good for breakfast</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/MkR3625n84HCjYXe6" target="_blank" rel="noopener">The Balkan Greek Restaurant</a>
+            <span class="place-note">Great for both lunch and dinner</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/X81e1WJ8txMPE2Wo6" target="_blank" rel="noopener">The Maple Leaf</a>
+            <span class="place-note">Great for breakfast as well as dinner</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/ZrHFKMvgJdayxHtU8" target="_blank" rel="noopener">Tooloulous</a>
+            <span class="place-note">Good for breakfast and great service</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Places to visit -->
+    <div class="city-section" id="visit">
+      <h2 class="city-header">Places to Visit</h2>
+
+      <div class="category">
+        <div class="category-label">Lakes & Hikes</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/6qzvydn2Kx7bVhVe6" target="_blank" rel="noopener">Emerald Lake</a>
+            <span class="place-note">Canoeing here is much cheaper than Lake Louise (and less crowded); the hiking loop is easy and scenic</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/99X4pCUwvrSMYq5P6" target="_blank" rel="noopener">Lake Louise</a>
+            <span class="place-note">Go early morning or afternoon for parking — definitely worth a visit</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/gfFRgYuNVVrR32Ht5" target="_blank" rel="noopener">Lake Minnewanka</a>
+            <span class="place-note">Hiking trail along the edge (need bear spray after the canyon) and cruises available</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/vdgQrbuLR7W1Sj4U8" target="_blank" rel="noopener">Moraine Lake</a>
+            <span class="place-note">Now requires a shuttle to access — very beautiful</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/Mq87siXeC1Vx38fp9" target="_blank" rel="noopener">Peyto Lake</a>
+            <span class="place-note">Probably one of my favorite spots — short hike to see Bow Lake too</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://www.alltrails.com/trail/canada/alberta/tunnel-mountain-summit?u=i" target="_blank" rel="noopener">Tunnel Mountain Summit</a>
+            <span class="place-note">Short hike with a pretty view of the town of Banff</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category also-section">
+        <div class="also-label">Also great from a previous trip</div>
+        <div class="also-list">
+          <a class="also-tag" href="https://www.alltrails.com/trail/canada/british-columbia/kain-hut-trail-to-applebee-campground?u=i" target="_blank" rel="noopener">Bugaboo Provincial Park</a>
+          <a class="also-tag" href="https://www.google.com/search?q=icefields+parkway" target="_blank" rel="noopener">Icefields Parkway</a>
+          <a class="also-tag" href="https://www.alltrails.com/trail/canada/alberta/sulphur-skyline-trail?u=i" target="_blank" rel="noopener">Sulphur Skyline Trail (Jasper NP)</a>
+        </div>
+      </div>
+
+      <div class="category also-section">
+        <div class="also-label">On my list for next time</div>
+        <div class="also-list">
+          <a class="also-tag" href="https://www.alltrails.com/trail/canada/alberta/clevel-cirque?u=i" target="_blank" rel="noopener">C-Level Cirque Trail</a>
+          <a class="also-tag" href="https://www.alltrails.com/trail/canada/british-columbia/niblet-numblet-nub-peak-cerulean-lake-sunburst-lake-loop?u=i" target="_blank" rel="noopener">Mount Assiniboine Provincial Park</a>
+          <a class="also-tag" href="https://www.alltrails.com/trail/canada/alberta/sentinel-pass--3?u=i" target="_blank" rel="noopener">Sentinel Pass Trail</a>
+          <a class="also-tag" href="https://www.alltrails.com/trail/canada/alberta/the-tea-houses-trail?u=i" target="_blank" rel="noopener">The Tea House Trail</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="travel-footer">
+    <a href="../">Diana D. Liu</a>
+  </div>
+
+  <script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('.top-nav a, .floating-nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Show/hide floating nav + highlight active section
+  const floatingNav = document.getElementById('floatingNav');
+  const sections = document.querySelectorAll('.city-section[id]');
+  window.addEventListener('scroll', () => {
+    floatingNav.classList.toggle('visible', window.scrollY > 400);
+
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 200) current = section.id;
+    });
+    document.querySelectorAll('.floating-nav a, .top-nav a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+  </script>
+</body>
+</html>
