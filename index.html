@@ -664,13 +664,16 @@
       .container { padding: 32px 20px 64px; }
       .section { margin-bottom: 48px; }
       .bg-grid { grid-template-columns: 1fr; }
-      .bg-grid[style] { grid-template-columns: repeat(2, auto) !important; }
+      .bg-grid[style] { grid-template-columns: 1fr 1fr !important; }
       .gallery { grid-template-columns: 1fr 1fr; }
-      .book-grid { grid-template-columns: 1fr; gap: 10px; }
+      .book-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .book-card { padding: 18px 20px; }
       .travel-tag { font-size: 0.85rem; padding: 7px 16px; }
+      .travel-grid { flex-direction: column; }
       .travel-region { font-size: 0.75rem; }
       .footer { font-size: 0.78rem; }
+      .edu-list { font-size: 0.8rem; padding-left: 14px; }
+      .bg-card > .value > a { font-size: 1.02rem; }
       .floating-nav { bottom: 16px; right: 16px; }
       .exp-item { gap: 14px; margin-bottom: 28px; }
       .exp-content h3 { font-size: 1.02rem; }
@@ -780,7 +783,7 @@
         <div class="value">
           <a href="https://www.berkeley.edu/">University of California, Berkeley</a>
           <ul class="edu-list">
-            <li>M.S. Information & Data Science (<a class="capstone-link" href="https://www.ischool.berkeley.edu/projects/2025/meetupai" target="_blank" rel="noopener">Capstone Project</a>)</li>
+            <li>M.S. Information & Data Science (<a class="capstone-link" href="https://www.ischool.berkeley.edu/projects/2025/meetupai" target="_blank" rel="noopener">Capstone</a>)</li>
             <li>B.A. Economics</li>
             <li>B.S. Business Administration</li>
           </ul>
@@ -818,22 +821,6 @@
         <span class="travel-tag static" style="text-align:center;">Film</span>
         <span class="travel-tag static" style="text-align:center;">Weightlifting</span>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="bookshelf-header">
-        <div class="section-title">Photos</div>
-        <button class="shuffle-btn" onclick="shufflePhotos()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line>
-            <polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line>
-            <line x1="4" y1="4" x2="9" y2="9"></line>
-          </svg>
-          Shuffle
-        </button>
-      </div>
-      <div class="divider"></div>
-      <div class="gallery" id="photoGallery"></div>
     </section>
 
     <section class="section">
@@ -882,6 +869,22 @@
         <a class="travel-tag" href="https://dianaliu.notion.site/Maui-HI-Dec-22-Dec-24-31b3065f691a4f69b831685fc4fd1d01" target="_blank" rel="noopener">Maui, HI <span class="travel-date">Dec '22, Dec '24</span></a>
         <a class="travel-tag" href="https://dianaliu.notion.site/Oahu-HI-Oct-22-Nov-23-a58a3881fce949f9bec006f94ffe6189" target="_blank" rel="noopener">Oahu, HI <span class="travel-date">Oct '22, Nov '23</span></a>
       </div>
+    </section>
+
+    <section class="section">
+      <div class="bookshelf-header">
+        <div class="section-title">Photos</div>
+        <button class="shuffle-btn" onclick="shufflePhotos()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line>
+            <polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line>
+            <line x1="4" y1="4" x2="9" y2="9"></line>
+          </svg>
+          Shuffle
+        </button>
+      </div>
+      <div class="divider"></div>
+      <div class="gallery" id="photoGallery"></div>
     </section>
 
     <footer class="footer">
@@ -1116,7 +1119,8 @@
     const grid = document.getElementById('bookGrid');
     let picks;
     do {
-      picks = shuffleArray(fiveStarBooks).slice(0, 3);
+      const bookCount = window.innerWidth <= 600 ? 2 : 3;
+      picks = shuffleArray(fiveStarBooks).slice(0, bookCount);
     } while (picks.some(p => lastBookPicks.includes(p)));
     lastBookPicks = picks;
 
@@ -1201,7 +1205,8 @@
     if (lifePhotos.length === 0) return;
     let picks;
     do {
-      picks = shuffleArray(lifePhotos).slice(0, 3);
+      const photoCount = window.innerWidth <= 600 ? 2 : 3;
+      picks = shuffleArray(lifePhotos).slice(0, photoCount);
     } while (picks.some(p => lastPhotoPicks.includes(p)));
     lastPhotoPicks = picks;
 
