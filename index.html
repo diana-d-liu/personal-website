@@ -1289,29 +1289,43 @@
     } while (picks.some(p => lastPhotoPicks.includes(p)));
     lastPhotoPicks = picks;
 
-    const existingItems = photoGallery.querySelectorAll('.gallery-item');
-    existingItems.forEach(item => {
-      item.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
-      item.style.opacity = '0';
-      item.style.transform = 'scale(0.95)';
-    });
-
-    setTimeout(() => {
-      photoGallery.innerHTML = picks.map(photo => `
-        <div class="gallery-item" style="opacity:0;transform:translateY(12px)">
-          <img src="${photo.src}" alt="${photo.caption || ''}" loading="lazy">
-          ${photo.caption ? `<div class="gallery-caption">${photo.caption}</div>` : ''}
-        </div>
-      `).join('');
-
-      photoGallery.querySelectorAll('.gallery-item').forEach((item, i) => {
-        setTimeout(() => {
-          item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-          item.style.opacity = '1';
-          item.style.transform = 'translateY(0)';
-        }, i * 80);
+    // Preload new images before animating
+    let loaded = 0;
+    const total = picks.length;
+    const onReady = () => {
+      if (++loaded < total) return;
+      // All images cached — now animate out
+      const existingItems = photoGallery.querySelectorAll('.gallery-item');
+      existingItems.forEach(item => {
+        item.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
+        item.style.opacity = '0';
+        item.style.transform = 'scale(0.95)';
       });
-    }, 180);
+
+      setTimeout(() => {
+        photoGallery.innerHTML = picks.map(photo => `
+          <div class="gallery-item" style="opacity:0;transform:translateY(12px)">
+            <img src="${photo.src}" alt="${photo.caption || ''}">
+            ${photo.caption ? `<div class="gallery-caption">${photo.caption}</div>` : ''}
+          </div>
+        `).join('');
+
+        photoGallery.querySelectorAll('.gallery-item').forEach((item, i) => {
+          setTimeout(() => {
+            item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+          }, i * 80);
+        });
+      }, 150);
+    };
+
+    picks.forEach(photo => {
+      const img = new Image();
+      img.onload = onReady;
+      img.onerror = onReady;
+      img.src = photo.src;
+    });
   }
 
   if (lifePhotos.length === 0) {
