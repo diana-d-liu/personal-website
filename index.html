@@ -583,6 +583,54 @@
       opacity: 0.7;
     }
 
+    .bookshelf-stats {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .bookshelf-stat {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+    }
+
+    .bookshelf-stat-num {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+
+    .bookshelf-stat-lbl {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .bookshelf-stat-sep {
+      width: 1px;
+      height: 18px;
+      background: var(--border);
+      align-self: center;
+    }
+
+    .genre-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .genre-tag {
+      font-size: 0.6rem;
+      padding: 2px 9px;
+      border-radius: 12px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
     /* Travel */
     .travel-region {
       font-size: 0.7rem;
@@ -840,8 +888,20 @@
     </section>
 
     <section class="section">
+      <div class="section-title">From My Bookshelf</div>
+      <div class="divider"></div>
       <div class="bookshelf-header">
-        <div class="section-title">From My Bookshelf</div>
+        <div class="bookshelf-stats">
+          <div class="bookshelf-stat">
+            <span class="bookshelf-stat-num" id="readCount">340</span>
+            <span class="bookshelf-stat-lbl">books read</span>
+          </div>
+          <div class="bookshelf-stat-sep"></div>
+          <div class="bookshelf-stat">
+            <span class="bookshelf-stat-num" id="toReadCount">579</span>
+            <span class="bookshelf-stat-lbl">to read</span>
+          </div>
+        </div>
         <button class="shuffle-btn" onclick="shuffleBooks()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line>
@@ -851,7 +911,12 @@
           Shuffle
         </button>
       </div>
-      <div class="divider"></div>
+      <div class="genre-tags">
+        <span class="genre-tag" style="background:rgba(167,139,219,0.12);color:#a78bdb;border:1px solid rgba(167,139,219,0.2)">Memoir</span>
+        <span class="genre-tag" style="background:rgba(107,189,123,0.12);color:#6bbd7b;border:1px solid rgba(107,189,123,0.2)">Science Fiction</span>
+        <span class="genre-tag" style="background:rgba(232,184,75,0.12);color:#e8b84b;border:1px solid rgba(232,184,75,0.2)">Historical Fiction</span>
+        <span class="genre-tag" style="background:rgba(224,123,123,0.12);color:#e07b7b;border:1px solid rgba(224,123,123,0.2)">Fantasy</span>
+      </div>
       <div class="book-grid" id="bookGrid"></div>
     </section>
 
@@ -1164,6 +1229,15 @@
   const grid = document.getElementById('bookGrid');
   grid.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
   shuffleBooks();
+
+  // --- Reading Stats (auto-updated via reading-stats.json) ---
+  fetch('reading-stats.json')
+    .then(r => r.json())
+    .then(data => {
+      if (data.booksRead) document.getElementById('readCount').textContent = data.booksRead;
+      if (data.toRead) document.getElementById('toReadCount').textContent = data.toRead;
+    })
+    .catch(() => {}); // fallback to hardcoded values
 
   // --- Photo Gallery ---
   const lifePhotos = [
