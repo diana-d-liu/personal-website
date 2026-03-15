@@ -616,21 +616,6 @@
       align-self: center;
     }
 
-    .genre-tags {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-bottom: 6px;
-    }
-
-    .genre-tag {
-      font-size: 0.6rem;
-      padding: 2px 9px;
-      border-radius: 12px;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-    }
-
     /* Travel */
     .travel-region {
       font-size: 0.7rem;
@@ -726,7 +711,7 @@
       .bg-grid { grid-template-columns: 1fr; }
       .bg-grid[style] { grid-template-columns: 1fr !important; }
       .gallery { grid-template-columns: 1fr 1fr; }
-      .book-grid { grid-template-columns: 1fr; gap: 10px; }
+      .book-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .book-card { padding: 18px 20px; }
       .travel-tag { font-size: 0.85rem; padding: 7px 16px; }
       .travel-grid { flex-direction: column; }
@@ -910,12 +895,6 @@
           </svg>
           Shuffle
         </button>
-      </div>
-      <div class="genre-tags">
-        <span class="genre-tag" style="background:rgba(167,139,219,0.12);color:#a78bdb;border:1px solid rgba(167,139,219,0.2)">Memoir</span>
-        <span class="genre-tag" style="background:rgba(107,189,123,0.12);color:#6bbd7b;border:1px solid rgba(107,189,123,0.2)">Science Fiction</span>
-        <span class="genre-tag" style="background:rgba(232,184,75,0.12);color:#e8b84b;border:1px solid rgba(232,184,75,0.2)">Historical Fiction</span>
-        <span class="genre-tag" style="background:rgba(224,123,123,0.12);color:#e07b7b;border:1px solid rgba(224,123,123,0.2)">Fantasy</span>
       </div>
       <div class="book-grid" id="bookGrid"></div>
     </section>
