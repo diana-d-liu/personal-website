@@ -597,7 +597,7 @@
     }
 
     .bookshelf-stat-num {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: 700;
       color: var(--text);
       font-variant-numeric: tabular-nums;
@@ -605,7 +605,7 @@
     }
 
     .bookshelf-stat-lbl {
-      font-size: 0.7rem;
+      font-size: 0.78rem;
       color: var(--muted);
     }
 
@@ -711,7 +711,7 @@
       .bg-grid { grid-template-columns: 1fr; }
       .bg-grid[style] { grid-template-columns: 1fr !important; }
       .gallery { grid-template-columns: 1fr 1fr; }
-      .book-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .book-grid { grid-template-columns: 1fr; gap: 10px; }
       .book-card { padding: 18px 20px; }
       .travel-tag { font-size: 0.85rem; padding: 7px 16px; }
       .travel-grid { flex-direction: column; }
@@ -873,20 +873,8 @@
     </section>
 
     <section class="section">
-      <div class="section-title">From My Bookshelf</div>
-      <div class="divider"></div>
       <div class="bookshelf-header">
-        <div class="bookshelf-stats">
-          <div class="bookshelf-stat">
-            <span class="bookshelf-stat-num" id="readCount">340</span>
-            <span class="bookshelf-stat-lbl">books read</span>
-          </div>
-          <div class="bookshelf-stat-sep"></div>
-          <div class="bookshelf-stat">
-            <span class="bookshelf-stat-num" id="toReadCount">579</span>
-            <span class="bookshelf-stat-lbl">to read</span>
-          </div>
-        </div>
+        <div class="section-title">From My Bookshelf</div>
         <button class="shuffle-btn" onclick="shuffleBooks()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line>
@@ -895,6 +883,18 @@
           </svg>
           Shuffle
         </button>
+      </div>
+      <div class="divider"></div>
+      <div class="bookshelf-stats">
+        <div class="bookshelf-stat">
+          <span class="bookshelf-stat-num" id="readCount">340</span>
+          <span class="bookshelf-stat-lbl">books read</span>
+        </div>
+        <div class="bookshelf-stat-sep"></div>
+        <div class="bookshelf-stat">
+          <span class="bookshelf-stat-num" id="toReadCount">579</span>
+          <span class="bookshelf-stat-lbl">to read</span>
+        </div>
       </div>
       <div class="book-grid" id="bookGrid"></div>
     </section>
