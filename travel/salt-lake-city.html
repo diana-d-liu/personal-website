@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salt Lake City — Diana D. Liu</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <meta name="referrer" content="no-referrer">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RYFE43T9ND"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RYFE43T9ND');
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: rgba(255,255,255,0.06);
+      --text: #e5e5e5;
+      --text-muted: rgba(255,255,255,0.45);
+      --accent: #e8734a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Back link */
+    .back-link {
+      position: fixed;
+      top: 28px;
+      left: 28px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      z-index: 100;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 120px 40px 60px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+    .hero .trip-date {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Content */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+
+    /* Notes section */
+    .notes {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+    .notes p { margin-bottom: 12px; }
+    .notes p:last-child { margin-bottom: 0; }
+    .notes a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    .notes a:hover { opacity: 0.8; }
+
+    /* City section */
+    .city-section {
+      margin-bottom: 56px;
+    }
+
+    /* Category */
+    .category {
+      margin-bottom: 28px;
+    }
+    .category-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* Place cards */
+    .place-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .place {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .place:last-child { border-bottom: none; }
+    .place-name {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 450;
+      transition: color 0.3s ease;
+      flex-shrink: 0;
+    }
+    .place-name:hover { color: var(--accent); }
+    .place-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* Also worth visiting */
+    .also-section {
+      margin-top: 20px;
+    }
+    .also-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 10px;
+    }
+    .also-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .also-tag {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    .also-tag:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Footer */
+    .travel-footer {
+      text-align: center;
+      padding: 24px 40px 48px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .travel-footer a {
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .travel-footer a:hover { color: var(--accent); }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .back-link { top: 16px; left: 16px; font-size: 0.82rem; }
+      .hero { padding: 80px 20px 40px; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero .subtitle { font-size: 0.95rem; }
+      .content { padding: 0 20px 60px; }
+      .notes { padding: 20px 24px; font-size: 0.88rem; }
+      .place-name { font-size: 0.9rem; }
+      .place-note { font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="../#life" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+
+  <div class="hero">
+    <h1>Salt Lake City</h1>
+    <div class="subtitle">Utah</div>
+    <div class="trip-date">January 2023</div>
+  </div>
+
+  <div class="content">
+
+    <!-- Overall Notes -->
+    <div class="notes">
+      <p>Worked remotely in SLC for a few weeks with friends and skied at <a href="https://goo.gl/maps/mtx8GzXDyxLvZ56z9" target="_blank" rel="noopener">Brighton</a> — an amazing resort, especially with the Ikon pass.</p>
+      <p>Stayed at an Airbnb in <a href="https://goo.gl/maps/Dfx7e1fqTsgF9ijD7" target="_blank" rel="noopener">Central City</a> — a bit far from Brighton, but very close to grocery stores, cafes, and restaurants.</p>
+      <p>If you're flying in, I'd recommend renting a car directly from <a href="https://goo.gl/maps/uCVpTEqrutx1psax7" target="_blank" rel="noopener">SLC Airport</a>. It wasn't too expensive and made getting to Brighton much more convenient — the Ikon shuttle doesn't come very often and was often crowded.</p>
+    </div>
+
+    <div class="city-section">
+
+      <div class="category">
+        <div class="category-label">Restaurants & Cafes</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/tSJ979mvUkQgpFVLA" target="_blank" rel="noopener">Coffee Garden</a>
+            <span class="place-note">Loved the matcha latte and almond croissants</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/kKipXMwVjZPvgJXt6" target="_blank" rel="noopener">Chinatown Supermarket</a>
+            <span class="place-note">Asian groceries, plus a little complex with good restaurants</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/kyhhSJBcgEJjMedf6" target="_blank" rel="noopener">Hero Hotpot</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/xyQMx5Bc4KFsPUfX7" target="_blank" rel="noopener">Meet Fresh</a>
+            <span class="place-note">Classic spot for Taiwanese boba and desserts</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category also-section">
+        <div class="also-label">Also worth trying (others' recs)</div>
+        <div class="also-list">
+          <a class="also-tag" href="https://goo.gl/maps/o18ygss9VaCv9Pcj9" target="_blank" rel="noopener">Purgatory</a>
+          <a class="also-tag" href="https://goo.gl/maps/3GpF8wBtZWgiyAPy5" target="_blank" rel="noopener">Tulie Bakery</a>
+          <a class="also-tag" href="https://goo.gl/maps/Zy126wwsjGpEXRcY9" target="_blank" rel="noopener">East Liberty Tap House</a>
+          <a class="also-tag" href="https://goo.gl/maps/xDf5w8XRF7v3TGW87" target="_blank" rel="noopener">Ruth's Diner</a>
+          <a class="also-tag" href="https://goo.gl/maps/wzVFjAoDPi2aL7Qy5" target="_blank" rel="noopener">Sawadee</a>
+        </div>
+      </div>
+
+      <div class="category also-section">
+        <div class="also-label">On my list for next time</div>
+        <div class="also-list">
+          <a class="also-tag" href="https://goo.gl/maps/R1Hm3vYMdGBoss397" target="_blank" rel="noopener">Temple Square</a>
+          <a class="also-tag" href="https://goo.gl/maps/K6rD3L2DVXN9RrF27" target="_blank" rel="noopener">Natural History Museum of Utah</a>
+          <a class="also-tag" href="https://goo.gl/maps/m2wFdEhHBZno8uoM7" target="_blank" rel="noopener">Liberty Park</a>
+          <a class="also-tag" href="https://goo.gl/maps/sDjH9jkgxAMpn1sV8" target="_blank" rel="noopener">Hiking trails</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="travel-footer">
+    <a href="../">Diana D. Liu</a>
+  </div>
+
+</body>
+</html>
