@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mexico City — Diana D. Liu</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <meta name="referrer" content="no-referrer">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RYFE43T9ND"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RYFE43T9ND');
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: rgba(255,255,255,0.06);
+      --text: #e5e5e5;
+      --text-muted: rgba(255,255,255,0.45);
+      --accent: #e8734a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Back link */
+    .back-link {
+      position: fixed;
+      top: 28px;
+      left: 28px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      z-index: 100;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 120px 40px 60px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+    .hero .trip-date {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Content */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+
+    /* Notes section */
+    .notes {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+    .notes p { margin-bottom: 12px; }
+    .notes p:last-child { margin-bottom: 0; }
+    .notes a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    .notes a:hover { opacity: 0.8; }
+
+    /* City section */
+    .city-section {
+      margin-bottom: 56px;
+    }
+    .city-header {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .city-notes {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+    .city-notes a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .city-notes a:hover { opacity: 0.8; }
+
+    /* Category */
+    .category {
+      margin-bottom: 28px;
+    }
+    .category-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* Place cards */
+    .place-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .place {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .place:last-child { border-bottom: none; }
+    .place-name {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 450;
+      transition: color 0.3s ease;
+      flex-shrink: 0;
+    }
+    .place-name:hover { color: var(--accent); }
+    .place-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* Also worth visiting */
+    .also-section {
+      margin-top: 20px;
+    }
+    .also-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 10px;
+    }
+    .also-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .also-tag {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    .also-tag:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Divider */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 48px 0;
+    }
+
+    /* Footer */
+    .travel-footer {
+      text-align: center;
+      padding: 24px 40px 48px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .travel-footer a {
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .travel-footer a:hover { color: var(--accent); }
+
+    /* Top nav */
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      padding: 28px 40px;
+      gap: 32px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 100;
+    }
+    .top-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .top-nav a:hover { color: #fff; }
+
+    /* Floating nav */
+    .floating-nav {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      gap: 4px;
+      background: rgba(30,30,30,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 100px;
+      padding: 5px 6px;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .floating-nav.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .floating-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 18px;
+      transition: all 0.2s;
+    }
+    .floating-nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+    }
+    .floating-nav a.active {
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .back-link { top: 16px; left: 16px; font-size: 0.82rem; }
+      .top-nav { padding: 20px 20px; gap: 24px; }
+      .hero { padding: 80px 20px 40px; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero .subtitle { font-size: 0.95rem; }
+      .content { padding: 0 20px 60px; }
+      .notes { padding: 20px 24px; font-size: 0.88rem; }
+      .city-header { font-size: 1.5rem; }
+      .place-name { font-size: 0.9rem; }
+      .place-note { font-size: 0.78rem; }
+      .floating-nav { bottom: 16px; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="../#life" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+
+  <nav class="top-nav">
+    <a href="#cdmx">Mexico City</a>
+    <a href="#puebla">Puebla</a>
+  </nav>
+
+  <nav class="floating-nav" id="floatingNav">
+    <a href="#cdmx">Mexico City</a>
+    <a href="#puebla">Puebla</a>
+  </nav>
+
+  <div class="hero">
+    <h1>Mexico City</h1>
+    <div class="subtitle">Mexico</div>
+    <div class="trip-date">March 2022</div>
+  </div>
+
+  <div class="content">
+
+    <!-- Overall Notes -->
+    <div class="notes">
+      <p>Was working remotely in Mexico City for ~3 weeks and had an amazing time overall — but I got food poisoning twice, likely from tap water or slushie-type drinks. Please make sure you're drinking bottled or filtered water.</p>
+      <p>For accommodation, Airbnb has fairly good options around the city. I stayed at the Icon Condesa via Sonder and would not recommend Sonder — they kicked us out ~2 weeks in with less than 24 hours notice and weren't willing to help us find alternative accommodations.</p>
+    </div>
+
+    <!-- Mexico City -->
+    <div class="city-section" id="cdmx">
+      <h2 class="city-header">Mexico City</h2>
+
+      <div class="category">
+        <div class="category-label">Restaurants & Cafes</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/MWDQ2VUAEDTgMKmu5" target="_blank" rel="noopener">Cafebrería El Péndulo Roma</a>
+            <span class="place-note">Lovely cafe</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/TwJsuQgcEefiVtva6" target="_blank" rel="noopener">Taqueria El Greco</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/1iamPjzgKjp6EwQb9" target="_blank" rel="noopener">Tacos Hola El Güero</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/Pgc3qCgWmRw7QNTb9" target="_blank" rel="noopener">Churrería El Moro</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/r2yhg8QMJL6ZGLFSA" target="_blank" rel="noopener">Lalo!</a>
+            <span class="place-note">Chilaquiles were delicious</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/X8AHfUoALT6hD8e37" target="_blank" rel="noopener">Blanco Colima</a>
+            <span class="place-note">Drinks and small plates were good, entrees just OK</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://www.google.com/search?q=terraza+catedral+cdmx" target="_blank" rel="noopener">Terraza Catedral</a>
+            <span class="place-note">Nice bar with pretty views</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Sightseeing & Activities</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/p9xDLBq6sPQUBWgW7" target="_blank" rel="noopener">Museo Nacional de Antropología</a>
+            <span class="place-note">One of my favorite museums — amazing collection, I went twice</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://www.tripadvisor.com/Attraction_Review-g150800-d155971-Reviews-Floating_Gardens_of_Xochimilco-Mexico_City_Central_Mexico_and_Gulf_Coast.html" target="_blank" rel="noopener">Xochimilco</a>
+            <span class="place-note">Boat tour was so fun — you can buy drinks and snacks on the canals</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/tvQzxu4JgvgkEfTA6" target="_blank" rel="noopener">Parque Mexico</a>
+            <span class="place-note">Lovely park to walk through</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/7aWe8fwdtWjcXccz5" target="_blank" rel="noopener">Templo Mayor Museum</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/CxRUc1SyzHV7ec18A" target="_blank" rel="noopener">Barrio Chino</a>
+            <span class="place-note">Chinatown</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Nightlife</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/UouTLpxLWMVGcY967" target="_blank" rel="noopener">Sing Karaoke Bar London</a>
+            <span class="place-note">If you like karaoke</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://www.google.com/search?q=cafe+paraiso+cdmx" target="_blank" rel="noopener">Cafe Paraiso</a>
+            <span class="place-note">Fun bar/club</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="category also-section">
+        <div class="also-label">Also worth trying (others' recs)</div>
+        <div class="also-list">
+          <a class="also-tag" href="https://www.google.com/search?q=contramar+roma+norte" target="_blank" rel="noopener">Contramar</a>
+          <a class="also-tag" href="https://www.google.com/search?q=pujol+cdmx" target="_blank" rel="noopener">Pujol</a>
+          <a class="also-tag" href="https://www.google.com/search?q=azul+historico+cdmx" target="_blank" rel="noopener">Azul Historico</a>
+          <a class="also-tag" href="https://goo.gl/maps/EfkcDkEB4V9nfDBJ6" target="_blank" rel="noopener">La Esquina Del Chilaquil</a>
+          <a class="also-tag" href="https://goo.gl/maps/LiztDo4En9WEBqt77" target="_blank" rel="noopener">Palacio de Bellas Artes</a>
+        </div>
+      </div>
+
+      <div class="category also-section">
+        <div class="also-label">On my list for next time</div>
+        <div class="also-list">
+          <a class="also-tag" href="https://goo.gl/maps/Y5tx3vEPDarMtb497" target="_blank" rel="noopener">Frida Kahlo Museum</a>
+          <a class="also-tag" href="https://goo.gl/maps/v3LHbCH3hrUjgfXC8" target="_blank" rel="noopener">Teotihuacan</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Puebla -->
+    <div class="city-section" id="puebla">
+      <h2 class="city-header">Puebla</h2>
+      <div class="city-notes">
+        Did a weekend trip to <a href="https://goo.gl/maps/29RT1mheTz1RpwCu6" target="_blank" rel="noopener">Puebla</a> from Mexico City.
+      </div>
+
+      <div class="category">
+        <div class="category-label">Restaurants</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://www.tripadvisor.com/Restaurant_Review-g152773-d6209609-Reviews-Moyuelo-Puebla_Central_Mexico_and_Gulf_Coast.html" target="_blank" rel="noopener">Moyuelo</a>
+            <span class="place-note">So good — got the duck mole</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/iPsfVjypUAfmMD9W7" target="_blank" rel="noopener">Profetica</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Sightseeing</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/tjox333VaXrNHE5Q8" target="_blank" rel="noopener">Templo San Felipe Neri La Concordia</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/AoBkFuJsdTeqxGPF6" target="_blank" rel="noopener">Zona Arqueológica de Cholula</a>
+            <span class="place-note">Wasn't able to go in, but the outside was cool</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="travel-footer">
+    <a href="../">Diana D. Liu</a>
+  </div>
+
+  <script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('.top-nav a, .floating-nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Show/hide floating nav + highlight active section
+  const floatingNav = document.getElementById('floatingNav');
+  const sections = document.querySelectorAll('.city-section[id]');
+  window.addEventListener('scroll', () => {
+    floatingNav.classList.toggle('visible', window.scrollY > 400);
+
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 200) current = section.id;
+    });
+    document.querySelectorAll('.floating-nav a, .top-nav a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+  </script>
+</body>
+</html>
