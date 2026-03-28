@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kauai — Diana D. Liu</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <meta name="referrer" content="no-referrer">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RYFE43T9ND"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RYFE43T9ND');
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: rgba(255,255,255,0.06);
+      --text: #e5e5e5;
+      --text-muted: rgba(255,255,255,0.45);
+      --accent: #e8734a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .back-link {
+      position: fixed;
+      top: 28px;
+      left: 28px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      z-index: 100;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link svg {
+      width: 16px; height: 16px;
+      stroke: currentColor; fill: none; stroke-width: 2;
+    }
+    .hero {
+      padding: 120px 40px 60px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3rem; font-weight: 700;
+      letter-spacing: -0.03em; margin-bottom: 8px;
+    }
+    .hero .subtitle { font-size: 1.1rem; color: var(--text-muted); font-weight: 300; }
+    .hero .trip-date {
+      display: inline-block; margin-top: 16px;
+      font-size: 0.8rem; color: var(--text-muted);
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .content { max-width: 680px; margin: 0 auto; padding: 0 40px 80px; }
+    .category { margin-bottom: 28px; }
+    .category-label {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 12px;
+    }
+    .place-list { display: flex; flex-direction: column; gap: 6px; }
+    .place {
+      display: flex; align-items: baseline; gap: 10px;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .place:last-child { border-bottom: none; }
+    .place-name {
+      color: var(--text); text-decoration: none;
+      font-size: 0.95rem; font-weight: 450;
+      transition: color 0.3s ease; flex-shrink: 0;
+    }
+    .place-name:hover { color: var(--accent); }
+    .place-note { font-size: 0.82rem; color: var(--text-muted); font-weight: 300; }
+    .travel-footer {
+      text-align: center; padding: 24px 40px 48px;
+      font-size: 0.82rem; color: rgba(255,255,255,0.2);
+    }
+    .travel-footer a {
+      color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.3s ease;
+    }
+    .travel-footer a:hover { color: var(--accent); }
+    @media (max-width: 600px) {
+      .back-link { top: 16px; left: 16px; font-size: 0.82rem; }
+      .hero { padding: 80px 20px 40px; }
+      .hero h1 { font-size: 2.2rem; }
+      .content { padding: 0 20px 60px; }
+      .place-name { font-size: 0.9rem; }
+      .place-note { font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="../#life" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+
+  <div class="hero">
+    <h1>Kauai</h1>
+    <div class="subtitle">Hawaii</div>
+    <div class="trip-date">April 2022</div>
+  </div>
+
+  <div class="content">
+
+    <div class="category">
+      <div class="category-label">Restaurants & Cafes</div>
+      <div class="place-list">
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/YeVvS1oQkNmBHvX46" target="_blank" rel="noopener">Kauai Boba and Barbeque</a>
+          <span class="place-note">Quick, cheap, and delicious</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/MeT6YCYtoAESvaLw5" target="_blank" rel="noopener">Hamura Saimin</a>
+          <span class="place-note">Busy around dinner time</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/7Rv6pyKG4Y63mQmE6" target="_blank" rel="noopener">Kauai Bakery & Coffee</a>
+          <span class="place-note">Delicious malasadas</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/JBeTPBuZume5uT4EA" target="_blank" rel="noopener">Mark's Place</a>
+          <span class="place-note">Huge Hawaiian plate lunches</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/CiGSzyHVXrpDz4Q88" target="_blank" rel="noopener">Konohiki Seafoods</a>
+          <span class="place-note">Great seafood market for poke</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <div class="category-label">Sightseeing & Activities</div>
+      <div class="place-list">
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/RH9hg9EbnjoFX9v8A" target="_blank" rel="noopener">Poipu Beach</a>
+          <span class="place-note">Apparently you can see turtles — we only saw one</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/Wia8M6eDf26b6D3J6" target="_blank" rel="noopener">Limahuli Garden & Preserve</a>
+          <span class="place-note">Really pretty botanical garden</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/5iUvhDkR4ZqJstGp7" target="_blank" rel="noopener">Coconut Corner</a>
+          <span class="place-note">Cute little spot for fruits and local goods</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/9gs3xNE8PNRrQkR56" target="_blank" rel="noopener">Waimea Canyon State Park</a>
+          <span class="place-note">Beautiful canyon with multiple vista points</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://makanacharters.com/" target="_blank" rel="noopener">NaPali Coast Boat Cruise</a>
+          <span class="place-note">Used Makana Charters and really liked them</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/aVXybBzxjqWqw6ve9" target="_blank" rel="noopener">Kaua'i Coffee Company</a>
+          <span class="place-note">Might be fun if you like coffee</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="travel-footer">
+    <a href="../">Diana D. Liu</a>
+  </div>
+
+</body>
+</html>

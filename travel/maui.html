@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maui — Diana D. Liu</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <meta name="referrer" content="no-referrer">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RYFE43T9ND"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RYFE43T9ND');
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: rgba(255,255,255,0.06);
+      --text: #e5e5e5;
+      --text-muted: rgba(255,255,255,0.45);
+      --accent: #e8734a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .back-link {
+      position: fixed;
+      top: 28px; left: 28px;
+      color: var(--text-muted); text-decoration: none;
+      font-size: 0.9rem; font-weight: 400;
+      z-index: 100; transition: color 0.3s ease;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .hero {
+      padding: 120px 40px 60px;
+      text-align: center; max-width: 720px; margin: 0 auto;
+    }
+    .hero h1 { font-size: 3rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 8px; }
+    .hero .subtitle { font-size: 1.1rem; color: var(--text-muted); font-weight: 300; }
+    .hero .trip-date {
+      display: inline-block; margin-top: 16px;
+      font-size: 0.8rem; color: var(--text-muted);
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .content { max-width: 680px; margin: 0 auto; padding: 0 40px 80px; }
+    .category { margin-bottom: 28px; }
+    .category-label {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 12px;
+    }
+    .place-list { display: flex; flex-direction: column; gap: 6px; }
+    .place {
+      display: flex; align-items: baseline; gap: 10px;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .place:last-child { border-bottom: none; }
+    .place-name {
+      color: var(--text); text-decoration: none;
+      font-size: 0.95rem; font-weight: 450;
+      transition: color 0.3s ease; flex-shrink: 0;
+    }
+    .place-name:hover { color: var(--accent); }
+    .place-note { font-size: 0.82rem; color: var(--text-muted); font-weight: 300; }
+    .place-note a { color: var(--accent); text-decoration: none; }
+    .also-section { margin-top: 20px; }
+    .also-label {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.25); margin-bottom: 10px;
+    }
+    .also-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .also-tag {
+      font-size: 0.82rem; color: rgba(255,255,255,0.4);
+      text-decoration: none; padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; transition: all 0.3s ease;
+    }
+    .also-tag:hover { color: var(--accent); border-color: var(--accent); }
+    .travel-footer {
+      text-align: center; padding: 24px 40px 48px;
+      font-size: 0.82rem; color: rgba(255,255,255,0.2);
+    }
+    .travel-footer a { color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.3s ease; }
+    .travel-footer a:hover { color: var(--accent); }
+    @media (max-width: 600px) {
+      .back-link { top: 16px; left: 16px; font-size: 0.82rem; }
+      .hero { padding: 80px 20px 40px; }
+      .hero h1 { font-size: 2.2rem; }
+      .content { padding: 0 20px 60px; }
+      .place-name { font-size: 0.9rem; }
+      .place-note { font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="../#life" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+
+  <div class="hero">
+    <h1>Maui</h1>
+    <div class="subtitle">Hawaii</div>
+    <div class="trip-date">December 2022 &amp; December 2024</div>
+  </div>
+
+  <div class="content">
+
+    <div class="category">
+      <div class="category-label">Restaurants & Cafes</div>
+      <div class="place-list">
+        <div class="place">
+          <a class="place-name" href="https://g.page/tinroofmaui?share" target="_blank" rel="noopener">Tin Roof</a>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://www.google.com/search?q=star+noodle+maui" target="_blank" rel="noopener">Star Noodle</a>
+          <span class="place-note">Really busy — make a reservation</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://lahainagrill.com" target="_blank" rel="noopener">Lahaina Grill</a>
+          <span class="place-note">Fancy, more expensive, but great food and ambience</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/cVsaR1ccBBHta1R37" target="_blank" rel="noopener">Ululani's Hawaiian Shave Ice</a>
+          <span class="place-note">Any location is great</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/Gh1TxnuuseAdfrd5A" target="_blank" rel="noopener">Tamura's Fine Wine & Liquors</a>
+          <span class="place-note">Good poke — though Foodland poke is generally very good too</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="category also-section">
+      <div class="also-label">Also worth trying (others' recs)</div>
+      <div class="also-list">
+        <a class="also-tag" href="https://www.google.com/search?q=duke%27s+beach+house+maui" target="_blank" rel="noopener">Duke's Beach House</a>
+        <a class="also-tag" href="https://goo.gl/maps/xqdj8TJnGm5n9qHu8" target="_blank" rel="noopener">Komoda Store and Bakery</a>
+        <a class="also-tag" href="https://goo.gl/maps/QASCHrbfzYJT3MT17" target="_blank" rel="noopener">Sam Sato's</a>
+      </div>
+    </div>
+
+    <div class="category" style="margin-top: 40px;">
+      <div class="category-label">Sightseeing & Activities</div>
+      <div class="place-list">
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/nAfQ7eXBqWkVQT3s9" target="_blank" rel="noopener">Honolua Bay</a>
+          <span class="place-note">Great for snorkeling</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/whvkzrtX2dUyoEkF8" target="_blank" rel="noopener">Makena Landing Park</a>
+          <span class="place-note">Snorkeled to Turtle Town and saw turtles in 15–30 min — booked via <a href="https://www.airbnb.com/experiences/1294157" target="_blank" rel="noopener">this Airbnb experience</a></span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/n2iQUNbVK6j6jGbg6" target="_blank" rel="noopener">Ho'okipa Beach Park</a>
+          <span class="place-note">Saw lots of turtles here (may depend on season or time of day)</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://www.alltrails.com/parks/hawaii/maui/haleakala-national-park" target="_blank" rel="noopener">Haleakalā National Park</a>
+          <span class="place-note">Need a <a href="https://www.recreation.gov/timed-entry/10089549" target="_blank" rel="noopener">reservation</a> for sunrise, but absolutely beautiful</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://www.viator.com/Maui-attractions/Molokini-Crater/d671-a1182" target="_blank" rel="noopener">Molokini Crater</a>
+          <span class="place-note">Super fun snorkeling — take non-drowsy Dramamine the night before if you get seasick</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/ZGHpkfVFSCkbisrs6" target="_blank" rel="noopener">Maui Pineapple Tour</a>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/NLEf1sinxc3XUvkh8" target="_blank" rel="noopener">Maui Dragon Fruit Farm</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <div class="category-label">Road to Hana</div>
+      <div class="place-list">
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/8wEb47xCKfm8qwxt9" target="_blank" rel="noopener">Wai'ānapanapa State Park</a>
+          <span class="place-note">Check if you need a permit before going</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="category also-section">
+      <div class="also-label">Also worth trying (others' recs)</div>
+      <div class="also-list">
+        <a class="also-tag" href="https://goo.gl/maps/BzzNUv4pfqw9Z6SM9" target="_blank" rel="noopener">Ahihi Cove</a>
+      </div>
+    </div>
+
+    <div class="category also-section">
+      <div class="also-label">On my list for next time</div>
+      <div class="also-list">
+        <a class="also-tag" href="https://www.airmaui.com/complete-island-helicopter-tour" target="_blank" rel="noopener">Air Maui Helicopter Tour</a>
+        <a class="also-tag" href="https://www.aliikulalavender.com/lavender-tours/" target="_blank" rel="noopener">Ali'i Kula Lavender</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="travel-footer">
+    <a href="../">Diana D. Liu</a>
+  </div>
+
+</body>
+</html>

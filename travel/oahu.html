@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oahu — Diana D. Liu</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <meta name="referrer" content="no-referrer">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RYFE43T9ND"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RYFE43T9ND');
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: rgba(255,255,255,0.06);
+      --text: #e5e5e5;
+      --text-muted: rgba(255,255,255,0.45);
+      --accent: #e8734a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .back-link {
+      position: fixed;
+      top: 28px; left: 28px;
+      color: var(--text-muted); text-decoration: none;
+      font-size: 0.9rem; font-weight: 400;
+      z-index: 100; transition: color 0.3s ease;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .hero {
+      padding: 120px 40px 60px;
+      text-align: center; max-width: 720px; margin: 0 auto;
+    }
+    .hero h1 { font-size: 3rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 8px; }
+    .hero .subtitle { font-size: 1.1rem; color: var(--text-muted); font-weight: 300; }
+    .hero .trip-date {
+      display: inline-block; margin-top: 16px;
+      font-size: 0.8rem; color: var(--text-muted);
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .content { max-width: 680px; margin: 0 auto; padding: 0 40px 80px; }
+    .category { margin-bottom: 28px; }
+    .category-label {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 12px;
+    }
+    .place-list { display: flex; flex-direction: column; gap: 6px; }
+    .place {
+      display: flex; align-items: baseline; gap: 10px;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .place:last-child { border-bottom: none; }
+    .place-name {
+      color: var(--text); text-decoration: none;
+      font-size: 0.95rem; font-weight: 450;
+      transition: color 0.3s ease; flex-shrink: 0;
+    }
+    .place-name:hover { color: var(--accent); }
+    .place-note { font-size: 0.82rem; color: var(--text-muted); font-weight: 300; }
+    .place-note a { color: var(--accent); text-decoration: none; }
+    .also-section { margin-top: 20px; }
+    .also-label {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.25); margin-bottom: 10px;
+    }
+    .also-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .also-tag {
+      font-size: 0.82rem; color: rgba(255,255,255,0.4);
+      text-decoration: none; padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; transition: all 0.3s ease;
+    }
+    .also-tag:hover { color: var(--accent); border-color: var(--accent); }
+    .section-divider { height: 1px; background: var(--border); margin: 48px 0; }
+    .travel-footer {
+      text-align: center; padding: 24px 40px 48px;
+      font-size: 0.82rem; color: rgba(255,255,255,0.2);
+    }
+    .travel-footer a { color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.3s ease; }
+    .travel-footer a:hover { color: var(--accent); }
+    @media (max-width: 600px) {
+      .back-link { top: 16px; left: 16px; font-size: 0.82rem; }
+      .hero { padding: 80px 20px 40px; }
+      .hero h1 { font-size: 2.2rem; }
+      .content { padding: 0 20px 60px; }
+      .place-name { font-size: 0.9rem; }
+      .place-note { font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="../#life" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+
+  <div class="hero">
+    <h1>Oahu</h1>
+    <div class="subtitle">Hawaii</div>
+    <div class="trip-date">October 2022 &amp; November 2023</div>
+  </div>
+
+  <div class="content">
+
+    <div class="category">
+      <div class="category-label">Restaurants & Cafes</div>
+      <div class="place-list">
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/KX9ZK8bGDDNn46ip7" target="_blank" rel="noopener">Waiola Shave Ice</a>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/PewizM7naDNini5A7" target="_blank" rel="noopener">Zippy's</a>
+          <span class="place-note">Casual chain, fast and affordable</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/hkFbbLvuB9xAsuwM7" target="_blank" rel="noopener">Liliha Bakery</a>
+          <span class="place-note">Liked the diner feel at this location</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/uQZN2okHF9ngWRWDA" target="_blank" rel="noopener">Shabuya</a>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/ze6ZRY3wbwJN33iK9" target="_blank" rel="noopener">Highway Inn Kaka'ako</a>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://maps.app.goo.gl/5R5sqfbKRtxA66Gg8" target="_blank" rel="noopener">Lam's Kitchen</a>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://maps.app.goo.gl/aJaiPQmU26AXdPNz5" target="_blank" rel="noopener">Sing Cheong Yuan Bakery</a>
+        </div>
+        <div class="place">
+          <span class="place-name">Foodland</span>
+          <span class="place-note">Any location — great poke</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/r1xpiFY5XwyXR5KF8" target="_blank" rel="noopener">Lin's Hawaiian Snacks</a>
+          <span class="place-note">Good to bring home as gifts</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/xBJrAHfKTAFCycuQ8" target="_blank" rel="noopener">Honolulu Cookie Company</a>
+          <span class="place-note">Also great for gifts</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="category also-section">
+      <div class="also-label">Also worth trying (others' recs)</div>
+      <div class="also-list">
+        <a class="also-tag" href="https://goo.gl/maps/c7u6sZjQjDaxXzex5" target="_blank" rel="noopener">The Alley</a>
+        <a class="also-tag" href="https://goo.gl/maps/gGKhrYBxYxnPYzc6A" target="_blank" rel="noopener">Ted's Bakery</a>
+      </div>
+    </div>
+
+    <div class="category also-section">
+      <div class="also-label">On my list for next time</div>
+      <div class="also-list">
+        <a class="also-tag" href="https://goo.gl/maps/AT8HdKqjypy6Dtbn9" target="_blank" rel="noopener">Rainbow Drive-In</a>
+        <a class="also-tag" href="https://goo.gl/maps/o89tC24wNPunjo4P7" target="_blank" rel="noopener">Leonard's Bakery</a>
+        <a class="also-tag" href="https://goo.gl/maps/BCsUdmra1YUivr3XA" target="_blank" rel="noopener">Ono Seafood</a>
+        <a class="also-tag" href="https://goo.gl/maps/RutxqofoTsBZEsjz5" target="_blank" rel="noopener">Adela's Country Eatery</a>
+        <a class="also-tag" href="https://goo.gl/maps/iw4T9rFZRt7HxtX19" target="_blank" rel="noopener">Waiahole Poi Factory</a>
+        <a class="also-tag" href="https://goo.gl/maps/CGEzYEi8951kwKYD9" target="_blank" rel="noopener">Da Bald Guy</a>
+        <a class="also-tag" href="https://goo.gl/maps/eV9kNTSZMjpXUvmb8" target="_blank" rel="noopener">Ry's Poke Shack</a>
+        <a class="also-tag" href="https://goo.gl/maps/FTmaFMywdCJWmgBq7" target="_blank" rel="noopener">Kahuku Farms</a>
+        <a class="also-tag" href="https://goo.gl/maps/bszgw459ecZSYuV3A" target="_blank" rel="noopener">Romy's Kahuku Prawns & Shrimp Hut</a>
+        <a class="also-tag" href="https://goo.gl/maps/M9QCUJFaQ7pnSAUB9" target="_blank" rel="noopener">Fumi's Kahuku Shrimp</a>
+        <a class="also-tag" href="https://goo.gl/maps/Ps4CoQVWny4GsWQUA" target="_blank" rel="noopener">Nico's Pier 38</a>
+        <a class="also-tag" href="https://goo.gl/maps/jyTgpJTE27u7kRQv9" target="_blank" rel="noopener">Helena's Hawaiian Food</a>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="category">
+      <div class="category-label">Sightseeing & Activities</div>
+      <div class="place-list">
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/HwWa3yd7LmKmfMxj7" target="_blank" rel="noopener">Manoa Falls</a>
+          <span class="place-note">Beautiful and short hike</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://www.alltrails.com/trail/hawaii/oahu/maunalaha-makiki-valley-and-kanealole-trails-loop?u=i" target="_blank" rel="noopener">Makiki Valley Loop Trail</a>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/b7Cc3qZJ14i6kx3u6" target="_blank" rel="noopener">Shark's Cove</a>
+          <span class="place-note">Favorite spot for snorkeling</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/spK4i1iYkFnwCTy2A" target="_blank" rel="noopener">Hanauma Bay Nature Preserve</a>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/ZBbVyaNgrT2iPGkW6" target="_blank" rel="noopener">Kayaking to Mokoli'i Island</a>
+          <span class="place-note">Rented a kayak <a href="https://goo.gl/maps/ZBbVyaNgrT2iPGkW6" target="_blank" rel="noopener">here</a> — fun climb once you land</span>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/kWNtB17iADmgWDjf7" target="_blank" rel="noopener">Ho'omaluhia Botanical Garden</a>
+        </div>
+        <div class="place">
+          <a class="place-name" href="https://goo.gl/maps/GruK7iKBCc19ExNm8" target="_blank" rel="noopener">Honolulu Museum of Art</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category also-section">
+      <div class="also-label">Also worth trying (others' recs)</div>
+      <div class="also-list">
+        <a class="also-tag" href="https://goo.gl/maps/HJH76Jep1JYXWFUE6" target="_blank" rel="noopener">Sans Souci Beach</a>
+      </div>
+    </div>
+
+    <div class="category also-section">
+      <div class="also-label">On my list for next time</div>
+      <div class="also-list">
+        <a class="also-tag" href="https://goo.gl/maps/ttUqW1QWCMv7qec56" target="_blank" rel="noopener">Kualoa Ranch</a>
+        <a class="also-tag" href="https://www.alltrails.com/trail/hawaii/oahu/olomana-trail" target="_blank" rel="noopener">Olomana Trail</a>
+        <a class="also-tag" href="https://goo.gl/maps/CXbK643xRQyTxBu58" target="_blank" rel="noopener">Byodo-In Temple</a>
+        <a class="also-tag" href="https://goo.gl/maps/uCEHEzJ4zeqY5QtZ8" target="_blank" rel="noopener">Hawaii State Art Museum</a>
+        <a class="also-tag" href="https://goo.gl/maps/DJJdxNPi5ouP4RCx5" target="_blank" rel="noopener">Iolani Palace</a>
+        <a class="also-tag" href="https://goo.gl/maps/b6ieM74ru8wKeK5w5" target="_blank" rel="noopener">Bishop Museum</a>
+        <a class="also-tag" href="https://goo.gl/maps/MCE9pgstF8BskYAa8" target="_blank" rel="noopener">Makapu'u Point Lighthouse Trail</a>
+        <a class="also-tag" href="https://goo.gl/maps/ikv1SdJ89YK5BdKs7" target="_blank" rel="noopener">Mu-Ryang-Sa Korean Buddhist Temple</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="travel-footer">
+    <a href="../">Diana D. Liu</a>
+  </div>
+
+</body>
+</html>
