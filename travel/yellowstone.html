@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yellowstone & Grand Teton — Diana D. Liu</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <meta name="referrer" content="no-referrer">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RYFE43T9ND"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RYFE43T9ND');
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: rgba(255,255,255,0.06);
+      --text: #e5e5e5;
+      --text-muted: rgba(255,255,255,0.45);
+      --accent: #e8734a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Back link */
+    .back-link {
+      position: fixed;
+      top: 28px;
+      left: 28px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      z-index: 100;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 120px 40px 60px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+    .hero .trip-date {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Content */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+
+    /* Notes section */
+    .notes {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+    .notes p { margin-bottom: 12px; }
+    .notes p:last-child { margin-bottom: 0; }
+    .notes a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    .notes a:hover { opacity: 0.8; }
+
+    /* City section */
+    .city-section {
+      margin-bottom: 56px;
+    }
+    .city-header {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .city-notes {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+    .city-notes a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .city-notes a:hover { opacity: 0.8; }
+
+    /* Category */
+    .category {
+      margin-bottom: 28px;
+    }
+    .category-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* Place cards */
+    .place-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .place {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .place:last-child { border-bottom: none; }
+    .place-name {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 450;
+      transition: color 0.3s ease;
+      flex-shrink: 0;
+    }
+    .place-name:hover { color: var(--accent); }
+    .place-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* Divider */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 48px 0;
+    }
+
+    /* Footer */
+    .travel-footer {
+      text-align: center;
+      padding: 24px 40px 48px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .travel-footer a {
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .travel-footer a:hover { color: var(--accent); }
+
+    /* Top nav */
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      padding: 28px 40px;
+      gap: 32px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 100;
+    }
+    .top-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .top-nav a:hover { color: #fff; }
+
+    /* Floating nav */
+    .floating-nav {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      gap: 4px;
+      background: rgba(30,30,30,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 100px;
+      padding: 5px 6px;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .floating-nav.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .floating-nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 18px;
+      transition: all 0.2s;
+    }
+    .floating-nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+    }
+    .floating-nav a.active {
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .back-link { top: 16px; left: 16px; font-size: 0.82rem; }
+      .top-nav { padding: 20px 20px; gap: 24px; }
+      .hero { padding: 80px 20px 40px; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero .subtitle { font-size: 0.95rem; }
+      .content { padding: 0 20px 60px; }
+      .notes { padding: 20px 24px; font-size: 0.88rem; }
+      .city-header { font-size: 1.5rem; }
+      .place-name { font-size: 0.9rem; }
+      .place-note { font-size: 0.78rem; }
+      .floating-nav { bottom: 16px; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="../#life" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+
+  <nav class="top-nav">
+    <a href="#upper-loop">Upper Loop</a>
+    <a href="#lower-loop">Lower Loop</a>
+    <a href="#grand-teton">Grand Teton</a>
+  </nav>
+
+  <nav class="floating-nav" id="floatingNav">
+    <a href="#upper-loop">Upper Loop</a>
+    <a href="#lower-loop">Lower Loop</a>
+    <a href="#grand-teton">Grand Teton</a>
+  </nav>
+
+  <div class="hero">
+    <h1>Yellowstone & Grand Teton</h1>
+    <div class="subtitle">Wyoming</div>
+    <div class="trip-date">June 2023</div>
+  </div>
+
+  <div class="content">
+
+    <!-- Overall Notes -->
+    <div class="notes">
+      <p>Spent a week in Yellowstone and a day in Grand Teton (a short drive from the south side). A week was more than enough — we drove both the <a href="https://s27363.pcdn.co/wp-content/uploads/2022/03/Yellowstone-Map.jpg.optimal.jpg" target="_blank" rel="noopener">Upper and Lower loops</a> multiple times and saw a ton of wildlife in the evenings: 5 bear sightings, hundreds of bison, elk, and more.</p>
+      <p>The park has stellar visitor centers with museum exhibits on the wildlife and the science behind the <a href="https://www.google.com/search?q=yellowstone+supervolcano" target="_blank" rel="noopener">supervolcano</a> and <a href="https://www.nps.gov/yell/learn/nature/life-in-extreme-heat.htm" target="_blank" rel="noopener">thermophiles</a> — worth stopping at.</p>
+      <p>July and August are the busiest months; late May and June are better times to visit. The park is huge — I'd recommend staying within the park if possible, and separating the loops by day. <a href="https://magazine.trivago.com/how-to-tackle-yellowstone-in-just-3-days/" target="_blank" rel="noopener">This 3-day plan</a> is pretty solid.</p>
+    </div>
+
+    <!-- Restaurants -->
+    <div class="city-section">
+      <h2 class="city-header">Restaurants</h2>
+
+      <div class="category">
+        <div class="category-label">West Yellowstone</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/NpbhGkCdht17nLS76" target="_blank" rel="noopener">Firehole Bar-B-Que</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/xCvUrewdbveGQNY16" target="_blank" rel="noopener">Book Peddler & Coffee Cafe</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">In the Park</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/C9ScDUn3poeCnh7C9" target="_blank" rel="noopener">Old Faithful Snow Lodge Obsidian Dining Room</a>
+            <span class="place-note">No reservations needed</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/DLnnB35P3uK9sahu6" target="_blank" rel="noopener">Old Faithful Inn Dining Room</a>
+            <span class="place-note">Recommend reserving for the dinner buffet</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/yvG4smCLsrE3roA1A" target="_blank" rel="noopener">Canyon Fountain and Grill</a>
+            <span class="place-note">Good for lunch</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Upper Loop -->
+    <div class="city-section" id="upper-loop">
+      <h2 class="city-header">Upper Loop</h2>
+
+      <div class="category">
+        <div class="category-label">Sightseeing</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/7nVUhnjbPqgsycTj6" target="_blank" rel="noopener">Mammoth Hot Springs</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/VNmK1MmNiqVA4hLh8" target="_blank" rel="noopener">Lamar Valley</a>
+            <span class="place-note">Saw a lot of bison here — requires a detour but worth it</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/cp8CKzC1ghRRQUcT8" target="_blank" rel="noopener">Calcite Springs Overlook</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/pop5LBfx2LwxACYp6" target="_blank" rel="noopener">Tower Fall</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Activities</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://www.yellowstonenationalparklodges.com/adventure/wild-west-adventures/old-west-dinner-cookout/" target="_blank" rel="noopener">Old West Dinner Cookout</a>
+            <span class="place-note">Great food, ate in beautiful <a href="https://www.yellowstonepark.com/where-to-stay-camp-eat/restaurants-breweries/old-west-cookout/" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">Pleasant Valley</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Lower Loop -->
+    <div class="city-section" id="lower-loop">
+      <h2 class="city-header">Lower Loop</h2>
+
+      <div class="category">
+        <div class="category-label">Sightseeing</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/brZbS7Ehsubsfvaf7" target="_blank" rel="noopener">Grand Prismatic Spring Overlook</a>
+            <span class="place-note">Short uphill hike to the viewpoint</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/RJWhKrUgVTTfU4bHA" target="_blank" rel="noopener">Grand Prismatic Spring</a>
+            <span class="place-note">One of the coolest spots in the park</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/eg355jqKGvtEPiVj6" target="_blank" rel="noopener">Artists Paintpots</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/rLC2VBLfofoY2GiL9" target="_blank" rel="noopener">Old Faithful</a>
+            <span class="place-note">Grand Prismatic was more impressive, but still worth seeing</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/aeiCYT9nivXAftFB9" target="_blank" rel="noopener">Brink of Lower Falls</a>
+            <span class="place-note">Grand Canyon of Yellowstone</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/dxnrjF2b21qzLSZU8" target="_blank" rel="noopener">Norris Geyser Basin</a>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/dvfrHQmm1f1sNSkPA" target="_blank" rel="noopener">Hayden Valley</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Grand Teton -->
+    <div class="city-section" id="grand-teton">
+      <h2 class="city-header">Grand Teton</h2>
+      <div class="city-notes">
+        A short drive from Yellowstone's south entrance — well worth spending at least a day here.
+      </div>
+
+      <div class="category">
+        <div class="category-label">Sightseeing</div>
+        <div class="place-list">
+          <div class="place">
+            <a class="place-name" href="https://www.nps.gov/thingstodo/tetonparkroad.htm" target="_blank" rel="noopener">Teton Park Road</a>
+            <span class="place-note">Great views of the Teton Range along the drive</span>
+          </div>
+          <div class="place">
+            <a class="place-name" href="https://goo.gl/maps/qbqKSSE2gQCjSow9A" target="_blank" rel="noopener">Jenny Lake</a>
+            <span class="place-note">Scenic cruises, various hikes, and more</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="travel-footer">
+    <a href="../">Diana D. Liu</a>
+  </div>
+
+  <script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('.top-nav a, .floating-nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Show/hide floating nav + highlight active section
+  const floatingNav = document.getElementById('floatingNav');
+  const sections = document.querySelectorAll('.city-section[id]');
+  window.addEventListener('scroll', () => {
+    floatingNav.classList.toggle('visible', window.scrollY > 400);
+
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 200) current = section.id;
+    });
+    document.querySelectorAll('.floating-nav a, .top-nav a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+  </script>
+</body>
+</html>
