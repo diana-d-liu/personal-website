@@ -18,6 +18,7 @@ import xml.etree.ElementTree as ET
 USER_ID = "34752532"
 STATS_OUTPUT = "reading-stats.json"
 BOOKS_OUTPUT = "five-star-books.json"
+EXCLUDED_INPUT = "five-star-excluded.json"
 
 # Strips Goodreads series suffixes like " (Earthsea Cycle, #4)" or " (Dune #3)".
 SERIES_SUFFIX_RE = re.compile(r"\s*\([^()]*#[\d\-]+\)\s*$")
@@ -78,16 +79,22 @@ def main():
             curated = json.load(f)
     existing_keys = {normalize(t) for t in curated}
 
+    excluded_keys = set()
+    if os.path.exists(EXCLUDED_INPUT):
+        with open(EXCLUDED_INPUT) as f:
+            excluded_keys = {normalize(t) for t in json.load(f)}
+
     added = []
     for item in read_items:
         if (item.findtext("user_rating") or "").strip() != "5":
             continue
         title = clean_title((item.findtext("title") or "").strip())
         author = (item.findtext("author_name") or "").strip()
-        if not title or normalize(title) in existing_keys:
+        key = normalize(title)
+        if not title or key in existing_keys or key in excluded_keys:
             continue
         curated[title] = author
-        existing_keys.add(normalize(title))
+        existing_keys.add(key)
         added.append(title)
 
     with open(BOOKS_OUTPUT, "w") as f:
