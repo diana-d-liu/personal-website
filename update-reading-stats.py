@@ -21,6 +21,12 @@ BOOKS_OUTPUT = "five-star-books.json"
 
 # Strips Goodreads series suffixes like " (Earthsea Cycle, #4)" or " (Dune #3)".
 SERIES_SUFFIX_RE = re.compile(r"\s*\([^()]*#[\d\-]+\)\s*$")
+# Strips collection suffixes so "The Hidden Girl and Other Stories" collapses
+# to the shorter "The Hidden Girl" that the curated list uses.
+COLLECTION_SUFFIX_RE = re.compile(
+    r"\s+and\s+Other\s+(Stories|Tales|Essays|Poems|Writings)\s*$",
+    re.IGNORECASE,
+)
 NORMALIZE_RE = re.compile(r"[^a-z0-9]+")
 
 
@@ -45,6 +51,7 @@ def fetch_shelf(shelf):
 
 def clean_title(title):
     title = SERIES_SUFFIX_RE.sub("", title).strip()
+    title = COLLECTION_SUFFIX_RE.sub("", title).strip()
     # Drop subtitle after the first colon to match the existing short-title style.
     if ":" in title:
         title = title.split(":", 1)[0].strip()
