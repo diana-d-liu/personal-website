@@ -9,6 +9,7 @@ hand-curated list.
   runs; the routine only ever grows the list.
 """
 
+import datetime
 import json
 import os
 import re
@@ -19,6 +20,9 @@ USER_ID = "34752532"
 STATS_OUTPUT = "reading-stats.json"
 BOOKS_OUTPUT = "five-star-books.json"
 EXCLUDED_INPUT = "five-star-excluded.json"
+INDEX_HTML = "index.html"
+
+LAST_UPDATED_RE = re.compile(r"Last updated [A-Z][a-z]+ \d{4}")
 
 # Strips Goodreads series suffixes like " (Earthsea Cycle, #4)" or " (Dune #3)".
 SERIES_SUFFIX_RE = re.compile(r"\s*\([^()]*#[\d\-]+\)\s*$")
@@ -100,10 +104,24 @@ def main():
     with open(BOOKS_OUTPUT, "w") as f:
         json.dump(curated, f, indent=2, ensure_ascii=False)
 
+    # Refresh the "Last updated <Month> <Year>" stamp in the footer.
+    now = datetime.date.today()
+    stamp = f"Last updated {now.strftime('%B')} {now.year}"
+    footer_changed = False
+    if os.path.exists(INDEX_HTML):
+        with open(INDEX_HTML) as f:
+            html = f.read()
+        new_html, n = LAST_UPDATED_RE.subn(stamp, html, count=1)
+        if n and new_html != html:
+            with open(INDEX_HTML, "w") as f:
+                f.write(new_html)
+            footer_changed = True
+
     suffix = f" (added: {', '.join(added)})" if added else ""
+    footer_note = f" | footer -> {stamp}" if footer_changed else ""
     print(
         f"Updated: {stats['booksRead']} read, {stats['toRead']} to-read, "
-        f"{len(curated)} 5-star (+{len(added)}){suffix}"
+        f"{len(curated)} 5-star (+{len(added)}){suffix}{footer_note}"
     )
 
 
