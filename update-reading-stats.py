@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Fetch reading stats from Goodreads RSS and merge new 5-star books into the
-hand-curated list.
+"""Fetch reading stats from Goodreads RSS and merge new 4- and 5-star books
+into the hand-curated list.
 
 - reading-stats.json: overwritten with current read / to-read counts.
 - five-star-books.json: append-only — preserves existing curated entries
-  (titles & authors as Diana has them) and only adds books rated 5 stars
+  (titles & authors as Diana has them) and only adds books rated 4 or 5 stars
   on Goodreads that aren't already present. Manual edits survive across
   runs; the routine only ever grows the list.
 """
@@ -90,7 +90,7 @@ def main():
 
     added = []
     for item in read_items:
-        if (item.findtext("user_rating") or "").strip() != "5":
+        if (item.findtext("user_rating") or "").strip() not in ("4", "5"):
             continue
         title = clean_title((item.findtext("title") or "").strip())
         author = (item.findtext("author_name") or "").strip()
@@ -121,7 +121,7 @@ def main():
     footer_note = f" | footer -> {stamp}" if footer_changed else ""
     print(
         f"Updated: {stats['booksRead']} read, {stats['toRead']} to-read, "
-        f"{len(curated)} 5-star (+{len(added)}){suffix}{footer_note}"
+        f"{len(curated)} 4+star (+{len(added)}){suffix}{footer_note}"
     )
 
 

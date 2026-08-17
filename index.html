@@ -1014,7 +1014,7 @@
   window.addEventListener('scroll', updateFloatingNav, { passive: true });
   updateFloatingNav();
 
-  // Populated from five-star-books.json (auto-updated from Goodreads).
+  // Populated from five-star-books.json (auto-updated from Goodreads; includes 4- and 5-star books).
   let bookAuthors = {};
   let fiveStarBooks = [];
 
@@ -1073,7 +1073,7 @@
     }, 180);
   }
 
-  // --- 5-Star Books (auto-updated via five-star-books.json) ---
+  // --- 4+Star Books (auto-updated via five-star-books.json) ---
   fetch('five-star-books.json')
     .then(r => r.json())
     .then(data => {
